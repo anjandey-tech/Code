@@ -1,0 +1,37 @@
+//User function template for C++
+//https://practice.geeksforgeeks.org/problems/value-equal-to-index-value1330/1#
+//Find a Fixed Point (Value equal to index) in a given array
+
+class Solution{
+public:
+
+	vector<int> valueEqualToIndex(int arr[], int n) {
+	    // code here
+	    vector<int> v;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(arr[i]==i+1)
+	        {
+	            v.push_back(i+1);
+	        }
+	    }
+	    return v;
+	}
+};
+
+class Solution 
+{
+    ArrayList<Integer> valueEqualToIndex(int arr[], int n) 
+	{
+        
+       ArrayList <Integer> mylist = new ArrayList<Integer>();
+       for(int i=0;i<n;i++)
+       {
+           if(arr[i]==i+1)
+           {
+               mylist.add(i+1);
+           }
+       }
+       return mylist;
+    }
+}
