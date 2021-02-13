@@ -1,0 +1,70 @@
+ #include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    int x;
+	    cin>>x;
+	    int arr[n];
+	    for(int i=0;i<n;i++)
+	    {
+	        cin>>arr[i];
+	    }
+	    int lb=lower_bound(arr,arr+n,x)-arr;
+	    if(lb!=n && arr[lb]==x)
+	    cout<<lb<<" ";
+	    
+	    
+	    int ub=upper_bound(arr,arr+n,x)-arr;
+	    ub--;
+	    if(ub!=n && arr[ub]==x)
+	    cout<<ub<<" "<<endl;
+	    else
+	    cout<<-1<<endl;
+	    
+	}
+	    
+	return 0;
+}
+
+//SIMPLE C++ SOLUTION
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	//code
+  int t;
+  cin>>t;
+  int data;
+  int n,k;
+  int I;
+  int r;
+  while(t--)
+  {
+      I=0;
+      cin>>n>>k;
+      for(int i=0;i<n;i++)
+      {
+          cin>>data;
+            if(data==k)
+            {
+               I++;
+              r=i;
+            if(I==1)//first occurence
+               cout<<i<<" ";
+            }
+      } 
+      if(I==0)
+        cout<<"-1"<<endl;
+        else    
+     cout<<r<<endl; 
+  }
+	return 0;
+}
