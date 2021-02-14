@@ -1,0 +1,44 @@
+//https://www.codechef.com/problems/INTRVS
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	   int fail=0,done=0,frbt=0,frslw=0;
+	   int n,k;
+	   cin>>n>>k;
+	   vector<int> v;
+	   for(int i=0;i<n;i++)
+	   {
+	      int ele;
+	      cin>>ele;
+	      if(ele==-1)
+	      fail++;
+	      else
+	      done++;
+	      if(ele<=1 && ele>=0)
+	      frbt++;
+	      if(ele>k)
+	      frslw++;
+	      v.push_back(ele);
+	      
+	   }
+	   float size=n/2.0;
+	 // cout<<size<<" " <<ceil(size)<<endl;
+	   if(done<ceil(size))
+	   cout<<"Rejected"<<endl;
+	   else if(done == n && frbt==n)
+	   cout<<"Bot"<<endl;
+	   else if(frslw>0)
+	   cout<<"Too Slow"<<endl;
+	   else
+	   cout<<"Accepted"<<endl;
+	   
+	   
+	}
+	return 0;
+}
