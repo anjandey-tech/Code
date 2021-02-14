@@ -1,0 +1,40 @@
+  
+#include<iostream> 
+using namespace std; 
+/*
+int main() 
+{ 
+	int i = 20; 
+
+	if (i == 10) 
+		cout<<"i is 10"; 
+	if (i>15) 
+		cout<<"i is greater 15"; 
+	if (i == 20) 
+		cout<<"i is 20"; 
+	else
+		cout<<"i is not present"; 
+} 
+*/
+//output--> i is greater 15 i is 20 
+// C++ program to illustrate if-else-if ladder 
+#include<iostream> 
+using namespace std; 
+
+int main() 
+{ 
+	int i = 20; 
+
+	if (i == 10) 
+		cout<<"i is 10"; 
+	else if (i>15) 
+		cout<<"i is greater 15"; 
+	else if (i == 20) 
+		cout<<"i is 20"; 
+	else
+		cout<<"i is not present"; 
+} 
+//output--i is greater 15*/
+in nested if statement program check every if condition
+
+in if else if statement program check first true condition , then left the conditional block
