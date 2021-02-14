@@ -1,0 +1,14 @@
+//https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1#
+//https://practice.geeksforgeeks.org/problems/kth-smallest-element5635/1#
+int kthSmallest(int arr[], int l, int r, int k) 
+{
+   vector<int> v;
+   for(int i=0;i<=r;i++)
+   {
+       v.push_back(arr[i]);
+   }
+   sort(v.begin(),v.end());
+   
+   int ans=v[k-1];
+   return ans;
+}
