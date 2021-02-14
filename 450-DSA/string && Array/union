@@ -1,0 +1,42 @@
+int doUnion(int a[], int n, int b[], int m)  
+{
+     set<int> st;
+     for(int i=0;i<n;i++)
+     {
+         st.insert(a[i]);
+     }
+      for(int i=0;i<m;i++)
+     {
+         st.insert(b[i]);
+     }
+     int c =st.size();
+     return c;
+    
+
+}
+
+int doUnion(int a[], int n, int b[], int m)  
+{
+    bool arr[100001]={false};
+    int count=0;
+     for(int i=0;i<n;i++)
+     {
+         if(arr[a[i]]==false)
+         {
+              count++;
+              arr[a[i]]=true;
+         }
+        
+     }
+      for(int i=0;i<m;i++)
+     {
+         if(arr[b[i]]==false)
+         {
+             count++;
+             arr[b[i]]=true;
+         }
+        
+     }
+    
+return count;
+}
