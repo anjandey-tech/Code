@@ -1,0 +1,48 @@
+   #include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+const int n=1000001;
+bool sieve[n];
+memset(sieve,true,sizeof(sieve));
+ 
+ sieve[0]=false;
+ sieve[1]=false;
+ 
+ for(int i=2; i*i<=n;i++)
+{
+	if(sieve[i])
+	{
+		for(int j=i*i;j<n;j+=i)
+		{
+			sieve[j]=false;
+		}
+	}
+}
+
+
+int ans[n]={0};
+int count=0;
+for(int i=5;i<n;i++)
+{
+	if(sieve[i] && sieve[i-2])
+	{
+		count++;
+	}
+	ans[i]=count;
+}
+
+// for(int i=0;i<n;i++)
+// cout<<i<<"="<<ans[i]<<" ";
+
+
+	int t;
+	cin>>t;
+	while(t--)
+	
+	{
+	   int n;
+		cin>>n;
+		cout<<ans[n]<<endl;
+	}
+}
