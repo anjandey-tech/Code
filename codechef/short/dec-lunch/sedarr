@@ -1,0 +1,25 @@
+ //https://www.codechef.com/LTIME91B/problems/SEDARR
+ #include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,k;
+		cin>>n>>k;
+		int sum=0;
+		int num;
+		while(n--)
+		{
+			int num;
+			cin>>num;
+		sum=sum+num;
+		}
+		if(sum%k==0)
+		cout<<0<<endl;
+		else
+		cout<<1<<endl;
+	}
+}
