@@ -1,0 +1,109 @@
+ //https://www.youtube.com/watch?v=NZjVX1qGfyg&t=2s
+ #include<bits/stdc++.h>
+ using namespace std;
+ int main()
+ {
+    int t;
+    cin>>t;
+    while(t--)
+    {
+     long long int n,m,r,g,b; 
+       
+       cin>>n>>m>>r>>g>>b;
+       
+    
+    vector<pair<long long int,char> > col;
+   
+   // col.push_back(make_pair( g ,'G'));
+   
+     col.push_back({r, 'R'});
+     col.push_back({g, 'G'});
+      col.push_back({b, 'B'});
+      
+      // for(int i=0;i<col.size();i++)
+      // cout<<"number of colour="<<col[i].first<<" "<<"name of color="<<col[i].second<<endl;
+      
+       sort(col.begin(),col.end());
+      // cout<<"after sorting "<<endl;
+      //    for(int i=0;i<col.size();i++)
+      // cout<<"number of colour="<<col[i].first<<" "<<"name of color="<<col[i].second<<endl;
+      
+      
+      int  color1=col[0].first;
+      int color2=col[1].first;
+      int color3=col[2].first;
+      
+        char ans[n][m];
+      for(int i=0;i<n;i++)
+      {
+         for(int j=0;j<m;j++)
+         {
+            ans[i][j]='*';
+         }
+      }
+      
+         
+      // for(int i=0;i<n;i++)
+      // {
+      //    for(int j=0;j<m;j++)
+      //    {
+      //     cout<<ans[i][j];
+      //    }
+      // }
+     
+    
+  
+    for(int i=0;i<n;i++)
+    {
+       for(int j=0;j<m;j++)
+       {
+          if(((i+j)%2==0) && color2!=0)
+          {
+             ans[i][j]=col[1].second;
+             color2--;
+          }
+       }
+    }
+    
+    for(int i=0;i<n;i++)
+    {
+       for(int j=0;j<m;j++)
+       {
+          if(((i+j)%2==1) && color1!=0)
+          {
+             ans[i][j]=col[0].second;
+             color1--;
+          }
+       }
+    }
+    
+    
+    for(int i=0;i<n;i++)
+    {
+       for(int j=0;j<m;j++)
+       {
+          if( ans[i][j]=='*'  && color3!=0)
+          {
+             ans[i][j]=col[2].second;
+             color3--;
+          }
+       }
+    }
+    
+    
+     for(int i=0;i<n;i++)
+    {
+       for(int j=0;j<m;j++)
+       {
+           
+             cout<<ans[i][j];
+             
+          
+       }
+       cout<<endl;
+    }
+    
+   // co
+   
+    }  
+ }
