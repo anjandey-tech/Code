@@ -1,0 +1,43 @@
+ #include<iostream>
+#include <vector> 
+using namespace std;
+int main()
+{
+	long long int x;
+	cin>>x;
+	//range of number
+	vector<bool>  sieve(x+1,true);//make everyone probabily prime number
+	//print that we have check everyone is prime initially
+	for(int i=0;i<=x;i++)
+	{
+		cout<<  sieve[i]<<" ";
+	} 
+	cout<<endl;
+	//make 0 and 1 composite(not prime number)
+	 sieve[0]=false;
+	 sieve[1]=false;
+	//choose  a prime number and crossed out(making false) of all multiple
+	for(int i=2;i<=x;i++)
+	{
+		if( sieve[i])
+		{
+			for(int j=i*i;j<=x;j=j+i)
+			 sieve[j]=false;
+		}
+	}
+	for(int i=0;i<=x;i++)
+	{
+		cout<< sieve[i]<<" ";
+	}
+	cout<<endl;
+	int y;
+       cin>>y;
+	cout<< sieve[y]<<endl;//return 1 if it is prime , else 0;
+	
+	for(int j=2;j<=x;j++)
+	{
+		if(sieve[j])
+		cout<<j<<" ";
+	}
+	return 0;
+}
