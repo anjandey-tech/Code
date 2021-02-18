@@ -1,0 +1,45 @@
+ //https://www.codechef.com/problems/GCDOPS
+ #include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	   vector<int> v;
+	   int n;
+	   cin>>n;
+	 //  for(int i=1;i<=n;i++) v.push_back(i);
+	   vector <int> vec;
+	   for(int i=0;i<n;i++)
+	   {
+	      int ele;
+	      cin>>ele;
+	      vec.push_back(ele);
+	   }
+	 
+	   bool ans=true;
+	   
+	   int x=0;
+	   for(int i=0;i<n;i++)
+	   { 
+	       x=i+1;
+	      if((x % vec[i]) == 0) 
+	      { 
+	        // cout<<vec[i]<<"\n";
+	      }
+	      else if((x % vec[i]) != 0)
+	      { // cout<<"not in if"<<"\n";
+	         ans=false;
+	      }
+	      
+	   }
+	   
+	   if(ans==true)cout<<"YES"<<endl;
+	   else cout<<"NO"<<endl;
+	   
+	}
+	return 0;
+}
