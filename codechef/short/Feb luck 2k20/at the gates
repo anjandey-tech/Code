@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int t;
+   cin>>t;
+   while(t--)
+   {
+      int n,k;
+      cin>>n>>k;
+      char a[n];
+   for(int i=0;i<n;i++)
+   cin>>a[i];
+   while(k--)
+   {
+      if(a[n-1]=='H')
+      { n--;
+         for(int i=0;i<n;i++)
+         {
+            if(a[i]=='H') a[i]='T';
+            else if(a[i]=='T') a[i]='H';
+         }
+        
+      }
+      else
+      {
+         n--;
+      }
+       
+   }
+   int count=0;
+   for(int i=0;i<n;i++)
+   {
+      if(a[i]=='H') count++;
+   }
+   cout<<count<<endl;
+   
+   }
+}
