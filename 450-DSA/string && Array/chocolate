@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    long long int n;
+	    cin>>n;
+	    vector<long long int> v;
+	    for(long long int i=0;i<n;i++)
+	    {
+	        long long int ele;
+	        cin>>ele;
+	        v.push_back(ele);
+	    }
+	    sort(v.begin(),v.end());
+	    int m;
+	    cin>>m;
+	    long long int ans=INT_MAX;
+	    for(long long int i=0;i<=n-m;i++)
+	    {
+	        long long  int dif=v[i+m-1]-v[i];
+	        ans=min(ans,dif);
+	    }
+	    cout<<ans<<endl;
+	}
+	return 0;
+}
