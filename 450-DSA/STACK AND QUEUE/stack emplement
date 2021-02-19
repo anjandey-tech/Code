@@ -1,0 +1,179 @@
+/*/* C++ program to implement basic stack
+operations
+without top  */
+
+#include<iostream>
+using namespace std;
+class stack
+{
+private:
+int a[100],size,max_ele=100;
+	public:
+		stack()
+		{size=0;
+			
+		}
+		
+		int get_size()
+		{
+		return size;	
+		}
+		
+		void push(int ele)
+		{
+			if(max_ele==size)
+			{
+				cout<<"stack is overflow"<<endl;
+				 
+				 
+			}
+			else
+			{
+			a[size]=ele;
+			size++;	
+			cout<<ele<<" is pushed into the stack"<<endl;
+			}
+			
+		}
+		void pop()
+		{
+			if(size==0)
+			{
+			cout<<"stack is in underflow"<<endl;
+	 	
+			}
+			
+			else
+			{
+				int temp=a[size-1];
+			size--;
+			 cout<<temp<< " is popped out"<<endl ;
+		  }
+			
+	
+		}
+		 void peek()
+		{
+			if(size==0)
+			{
+					cout<<"stack is in underflow"<<endl;
+					 
+			}
+		
+			
+			else
+			cout<< a[size-1]<<" is peek ele"<<endl;
+			
+		}
+		void update_top(int ele)
+		
+		{
+			if(size==0)
+			{
+					cout<<"stack is in underflow"<<endl;
+					return;
+			}
+		
+			
+			else
+			a[size-1]=ele;
+		}
+};
+int main()
+{
+stack st;
+st.push(1);
+st.push(1);
+ st.pop();
+ st.pop() ;
+ st.pop() ;
+ cout<<"size of the stack="<<st.get_size()<<endl; 
+ st.peek() ;
+}
+
+
+
+
+///* C++ program to implement basic stack
+//operations */
+////using top 
+//#include <bits/stdc++.h>
+//
+//using namespace std;
+//
+//#define MAX 1000
+//
+//class Stack {
+//	int top;
+//
+//public:
+//	int a[MAX]; // Maximum size of Stack
+//
+//	Stack() 
+//	{ top = -1; }
+// 
+//
+//void push(int x)
+//{
+//	if (top >= (MAX - 1)) {
+//		cout << "Stack Overflow"<<endl;
+//		 
+//	}
+//	else {
+//		a[++top] = x;
+//		cout << x << " pushed into stack\n";
+//		 
+//	}
+//}
+//
+//void pop()
+//{
+//	if (top < 0) 
+//	{    
+//		cout << "Stack Underflow"<<endl;
+//		//return false;
+//	}
+//	else 
+//	{
+//		int x = a[top];
+//		top--;
+//		cout<<x<<" is pooped from stack"<<endl;
+//	}
+//}
+//
+//void peek()
+//{
+//	if (top < 0) 
+//	{
+//		cout << "Stack is Empty"<<endl;
+//		 
+//	}
+//	else
+//	 {
+//		int x = a[top];
+//	 cout<<x<<" is peek element"<<endl;
+//	}
+//}
+//
+//bool  isEmpty()
+//{
+//	if(top<0)
+//	cout<<"stack is empty"<<endl; 
+//	else  cout<<"stack is not empty"<<endl;
+//	//return (top < 0);
+//}
+//};
+//// Driver program to test above functions
+//int main()
+//{
+//  Stack s;
+//	s.push(10);
+//	s.push(20);
+//	s.push(30);
+//
+//    s.pop() ;
+//    s.pop()  ;
+//    s.peek();
+//    s.isEmpty();
+//	return 0;
+//}
