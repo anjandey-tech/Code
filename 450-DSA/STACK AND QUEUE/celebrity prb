@@ -1,0 +1,37 @@
+//https://practice.geeksforgeeks.org/problems/the-celebrity-problem/1#
+class Solution {
+    public:
+    int celebrity(vector<vector<int> >& M, int n)
+    {
+        stack <int> st;
+        for(int i=0;i<n;i++)
+        {
+            st.push(i);
+        }
+        while(st.size()>1)
+        {
+            int i = st.top();
+            st.pop();
+            int j=st.top();
+             st.pop();
+             if(M[i][j]==1)
+             st.push(j);
+             else if(M[i][j]==0)
+             st.push(i);
+        }
+         
+        int potentialcelebrity=st.top();
+        bool ans=true;
+       for(int i=0;i<n;i++)
+       {
+           if(i!=potentialcelebrity)
+           {
+               if(M[potentialcelebrity][i] ==1 || M[i][potentialcelebrity]==0)
+               ans=false;
+           }
+       }
+       if(ans==true)
+       return potentialcelebrity ;
+       else if(ans==false) return -1;
+    }
+};
