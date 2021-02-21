@@ -1,0 +1,28 @@
+//https://practice.geeksforgeeks.org/problems/majority-element-1587115620/1#
+int ans_index=0;
+    int count=1;
+    for(int i=1;i<n;i++)
+    {
+        if(a[i]==a[ans_index])
+        count++;
+        else
+        count--;
+        if(count==0)
+        {
+            ans_index=i;
+        count=1;
+        }
+        
+    }
+    //cout<<a[ans_index]<<endl;
+    int finalcount=0;
+    for(int i=0;i<n;i++)
+    {
+       if(a[i]==a[ans_index])
+       finalcount++;
+    }
+    if(finalcount>(n/2))
+    return a[ans_index];
+    else 
+    return -1;
+}
