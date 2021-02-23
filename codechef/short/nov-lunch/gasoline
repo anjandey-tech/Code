@@ -1,0 +1,65 @@
+ #include<bits/stdc++.h>
+using namespace std;
+int main() 
+{
+  ios::sync_with_stdio(0);
+  cin.tie(0);
+  int t;
+  cin >> t;
+  while (t--) 
+  {
+    int n;
+    cin >> n;
+    vector <int> fuel(n);
+    vector<int> cost(n);
+
+    for (int i = 0; i < n; i++) 
+    {
+      cin >> fuel[i];
+    }
+    cout<<"fuel vector"<<endl;
+
+    for(auto it: fuel)
+      cout<<it<<" ";
+    cout<<endl;
+
+    vector <pair <int, int> > e;
+
+    for (int i = 0; i < n; i++) {
+      cin >> cost[i];
+      e.push_back({cost[i], fuel[i]});
+    }
+cout<<"before sort"<<endl;
+     for(auto it: e)
+     {
+      cout<<it.first<<" "<<it.second<<" ";cout<<endl;
+        
+     }
+      
+    cout<<endl;
+
+    sort(e.begin(), e.end());
+    cout<<"after sort"<<endl;
+    for(auto it: e)
+    
+    {
+      cout<<it.first<<" "<<it.second<<" "; cout<<endl;
+       
+    }
+    cout<<endl;
+
+
+    int sum = 0;
+    long long int  ans = 0;
+    for (auto c : e) {
+      if (sum + c.second <= n) {
+        sum += c.second;
+        ans += c.first *  c.second;
+      } else {
+        ans += (n - sum) *   c.first;
+        break;
+      }
+    }
+    cout << ans << '\n';
+  }
+}
