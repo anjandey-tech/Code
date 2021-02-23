@@ -1,0 +1,52 @@
+ // Code here.
+ basic solution
+        // vector<int> v;
+        // sort(nums.begin(),nums.end());
+        // // for (auto it:nums)
+        // // cout<<it<< " ";
+        // if(nums[0]!=nums[1])
+        // v.push_back(nums[0]);
+        // for(int i=1;i<nums.size()-1;i++)
+        // {
+        //     if(nums[i]!=nums[i+1] && nums[i]!=nums[i-1]  )
+        //     v.push_back(nums[i]);
+        // }
+        // int len=nums.size();
+        // if(nums[len-1]!=nums[len-2])
+        // v.push_back(nums[len-1]);
+        // return v;
+  using xor operater -->  pepcpding      
+        
+       int len=num.size();
+        int XxorY=0;
+        for(int i=0;i<len;i++)
+        {
+            XxorY=XxorY^num[i];
+        }
+        
+        int rsb = XxorY & -XxorY;
+        int a=0;
+        int b=0;
+        for(int i=0;i<len;i++)
+        {
+            if((rsb & num[i]) == 0)
+            a=a^num[i];
+            else
+            b=b^num[i];
+        }
+         vector<int> v;
+         if(a<b)
+         {
+              v.push_back(a);
+          v.push_back(b);
+         }
+         else
+         {
+             v.push_back(b);
+          v.push_back(a);
+             
+         }
+         
+         
+        
+       return v; 
