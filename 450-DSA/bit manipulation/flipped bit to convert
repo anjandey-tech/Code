@@ -1,0 +1,10 @@
+ int XxorY= a^b;
+    int count=0;
+    while(XxorY)
+    {
+        int rsb=XxorY & -XxorY;
+        XxorY-=rsb;
+        count++;
+    }
+    return count;
+    
