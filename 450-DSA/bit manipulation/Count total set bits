@@ -1,0 +1,34 @@
+int countSetBits(int n)
+{ brute force approach
+    // Your logic here
+//     int count=0;
+//   for(int i=1;i<=n;i++)
+//     {
+//         int x=i;
+//         while(x)
+//         {
+//             int rsb = x & -x;
+//             x=x - rsb;
+//             count++;
+//         }
+//     }
+//     return count;
+
+  --> pepcoding
+
+if(n==0)
+return 0;
+ int x=largestpowerof2(n);
+ cout<<x<<endl;
+ int onbittill2raisetopowerx= x*(1<<(x-1));
+ cout<<"onbittill2raisetopowerx="<<onbittill2raisetopowerx<<endl;
+ int onbitafter2raisetopowerxton= n -(1<<(x))+1;
+ cout<<"onbitafter2raisetopowerxton="<<onbitafter2raisetopowerxton<<endl;
+ int rest=n - (1<<(x));
+ cout<<"rest="<<rest<<endl;
+ int ans=onbittill2raisetopowerx+onbitafter2raisetopowerxton+countSetBits(rest);
+ cout<<"ans="<<ans<<endl;
+ return ans;
+
+
+}
