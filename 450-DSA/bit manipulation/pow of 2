@@ -1,0 +1,14 @@
+  // Your code here 
+    if(n==0)
+    return false;
+    else
+    {
+       int val = n & (n-1);
+   // cout<<val;
+    if(val==0)
+    return true;
+    else 
+    return false;
+      
+    }
+   
