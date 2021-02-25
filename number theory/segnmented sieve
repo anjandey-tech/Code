@@ -1,0 +1,103 @@
+ #include<bits/stdc++.h>
+#define REP(i,n) for (int i = 1; i <= n; i++)
+#define mod 1000000007
+#define pb push_back
+#define ff first
+#define ss second
+#define ii pair<int,int>
+#define vi vector<int>
+#define vii vector<ii>
+#define lli long long int
+#define INF 1000000000
+#define endl '\n'
+const double PI = 3.141592653589793238460;
+typedef std::complex<double> Complex;
+typedef std::valarray<Complex> CArray;
+ 
+using namespace std;
+vector<int>primes;// it constains prime number till 10^6 ==>{2,3,5,7,11,13,17,19}
+int prime[100001];
+ 
+void sieve(int maxN)
+{
+	vi ar(maxN + 1 , 0);//make everyone probabily prime number
+	ar[1] = 1;////make 0 and 1 composite(not prime number)
+	
+	for(int i=2;i<=maxN;i++)
+	if(ar[i] == 0)//if it is probable prime
+	{
+		for(int j=2*i;j<=maxN;j+=i) // go its every multiple make it composite
+		ar[j] = 1;
+	}
+	
+//	REP(i , maxN)
+	for (int i = 1; i <=  maxN; i++)
+	if(ar[i] == 0)//if it is prime 
+	primes.pb(i);//push_back to primes vector
+	
+	cout<<" i am in sieve function"<<endl;
+	cout<<"ar vector";
+	for(auto it1 :ar)
+	cout<<it1<<" ";
+	cout<<endl;
+
+	cout<<"primes vector=";
+	for(auto it :primes)
+	cout<<it<<" ";
+	cout<<"going out from sieve funcion"<<endl;
+}
+ 
+void init(int L , int R)
+{
+   cout<<"i am in init funcion"<<endl;
+	if(L == 1) L++;
+	
+	int maxN = R - L + 1;
+	cout<<"maxN="<<maxN<<endl;
+	vector<int> ar(maxN , 0);//make everyone probabily prime number
+	for(auto it : ar)
+	cout<<it<<" ";
+	cout<<endl;
+	
+	
+	for(long long int p : primes)//primes vector constains prime number till 10^6 ==>{2,3,5,7,11,13,17,19}
+	if(p*p <= R)
+	{
+		int i = (L / p) * p;
+		cout<<"before modification i="<<i<<endl;
+		if(i < L)
+		i =i+ p;
+			cout<<"after modification i="<<i<<endl;
+		for(;i<=R;i+=p)
+		{
+			if(i != p)
+			ar[i-L] = 1;
+		}
+			for(auto it : ar)
+	cout<<it<<" ";
+	cout<<endl;
+		
+	}
+	for(auto it : ar)
+	cout<<it<<" ";
+	cout<<endl;
+	
+	for(int i=0;i<maxN;i++)
+	if(ar[i] == 0)
+	cout<<L + i<<endl;
+}
+ 
+int main()
+{
+	sieve(100);
+	int t , L , R;
+	cin>>t;
+	
+	while(t--)
+	{
+		cin>>L>>R;
+		cout<<"l="<<L<<"r="<<R<<endl;
+		init(L , R);
+		cout<<endl;
+	}
+}
