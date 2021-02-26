@@ -1,0 +1,45 @@
+//https://practice.geeksforgeeks.org/problems/check-for-bst/1#
+//INORDER TRAVARSAL OF BST IS IN SORTED ORDER
+class Solution
+{
+    vector<int> v;
+    void inorder(Node *root)
+    {
+        if(root== NULL)
+        {
+            return ;
+        }
+        else
+        {
+            inorder(root->left);
+            v.push_back(root->data);
+            inorder(root->right);
+        }
+    }
+    public:
+    bool isBST(Node* root) 
+    {
+        // Your code here
+        inorder(root);
+        int t=1;
+        for(int i=1;i<v.size();)
+        {
+            if(v[i-1]<v[i])
+            {
+                i++;
+            }
+            else
+            {
+                t=0;
+                break;
+            }
+        }
+        //v.clear();
+        if(t==0)
+    return     false;
+        else
+        return true;
+        
+    }
+    
+};
