@@ -1,0 +1,86 @@
+ 
+#include <bits/stdc++.h>
+using namespace std;
+int nextGap(int gap)
+{
+	if (gap <= 1)
+		return 0;
+	return (gap / 2) + (gap % 2);
+}
+
+void merge(int* arr1, int* arr2, int n, int m)
+{
+	int i=0, j=0, gap = n + m;
+	for (gap = nextGap(gap); 
+		gap > 0; gap = nextGap(gap)) 
+	{
+		cout<<"gap="<<gap<<endl;
+	
+		for (i = 0; i + gap < n; i++)
+		{
+			cout<<"i"<<i<<" ";
+			cout<<" comparing elements in the first array."<<endl;
+			if (arr1[i] > arr1[i + gap])
+			{
+			
+				swap(arr1[i], arr1[i + gap]);
+				cout<<"arr1[i]="<<arr1[i]<<"arr1[i+gap]="<<arr1[i+gap]<<endl;
+				}
+				
+				
+			}
+
+	
+		for (j = gap > n ? gap - n : 0; 
+			i < n && j < m;
+			i++, j++)
+			{	cout<<"comparing elements in both arrays."<<endl;
+			cout<<"i"<<i<<"j="<<j<<" ";
+			
+			if (arr1[i] > arr2[j])
+			{
+			
+				swap(arr1[i], arr2[j]);
+				cout<<"arr1[i]="<<arr1[i]<<"arr2[j]="<<arr2[j]<<endl;
+				}
+			}
+
+		if (j < m)
+		 {
+		
+			for (j = 0; j + gap < m; j++)
+			{cout<<"j="<<j<<" ";
+			 cout<<"comparing elements in the second array."<<endl;
+				if (arr2[j] > arr2[j + gap])
+				{
+				
+					swap(arr2[j], arr2[j + gap]);
+					cout<<"arr2[j]="<<arr2[j]<<"arr2[j+gap]="<<arr2[j+gap]<<endl;
+				}
+					
+					}
+		}
+	}
+}
+
+// Driver code
+int main()
+{
+	int a1[] = { 1,3,5,7 };
+	int a2[] = { 0,2,6,8,9 };
+	int n = sizeof(a1) / sizeof(int);
+	int m = sizeof(a2) / sizeof(int);
+
+	// Function Call
+	merge(a1, a2, n, m);
+
+	printf("First Array: ");
+	for (int i = 0; i < n; i++)
+		printf("%d ", a1[i]);
+
+	printf("\nSecond Array: ");
+	for (int i = 0; i < m; i++)
+		printf("%d ", a2[i]);
+	printf("\n");
+	return 0;
+}
