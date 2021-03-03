@@ -1,0 +1,47 @@
+// A Stack based C++ program to find next
+// smaller element for all array elements.
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/* prints element and NSE pair for all
+elements of arr[] of size n */
+void printNSE(int arr[], int n)
+{
+	stack<int> s;
+	vector<int> v(n);
+	v[n-1]=-1;
+	s.push(arr[n-1]);
+	for(int i=n-2;i>=0;i--)
+	{
+		while(!s.empty() && arr[i]<s.top())
+		{
+			s.pop();
+		}
+		if(s.empty())
+		{
+			v[i]=-1;
+			
+		}
+		else
+		{
+			v[i]=s.top();
+		}
+		s.push(arr[i]);
+	}
+	
+	for(int i=0;i<n;i++)
+	{
+		cout<<v[i]<<endl;
+	}
+	 
+}
+
+/* Driver program to test above functions */
+int main()
+{
+	int arr[] = { 13,5,2,1,6,34,78,5,6,7,8 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	printNSE(arr, n);
+	return 0;
+}
