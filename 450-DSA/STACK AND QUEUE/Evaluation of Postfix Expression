@@ -1,0 +1,35 @@
+ int operation(int v1, int v2, char op) {
+    if (op == '+') {
+      return v1 + v2;
+    } else if (op == '-') {
+      return v1 - v2;
+    } else if (op == '*') {
+      return v1 * v2;
+    } else if (op == '/') {
+      return v1 / v2;
+    } else {
+      return 0;
+    }
+     }
+    int evaluatePostfix(string s)
+    {
+        stack<int> vstack;
+        int n=s.length();
+        for(int i=0;i<n;i++)
+        {
+            if (s[i] == '-' || s[i] == '+' || s[i] == '*' || s[i] == '/')
+             {
+               int v2 = vstack.top();vstack.pop();
+                int v1 = vstack.top();vstack.pop();
+                  int val = operation(v1, v2, s[i]);
+                 vstack.push(val);
+            }
+            else
+            {
+                vstack.push(s[i] - '0');
+            }
+        
+    }
+    int res=vstack.top();
+    return res;
+    }
