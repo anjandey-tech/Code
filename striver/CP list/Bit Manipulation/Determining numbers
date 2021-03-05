@@ -1,0 +1,38 @@
+  #include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	  int size;
+	  cin>>size;
+	  vector<int> v;
+	  for(int i=0;i<size;i++)
+	  {
+		  int ele;
+		  cin>>ele;
+		  v.push_back(ele);
+	  }
+	  int xxory=0;
+for(auto it:v)
+{
+xxory=xxory^it;
+}
+int rmsbm= xxory & -xxory;
+int x=0,y=0;
+for(auto it:v)
+{
+	if((rmsbm & it)==0)
+	x=x^it;
+	else
+	y=y^it;
+
+}
+if(x>y)
+{
+	cout<<y<<" "<<x<<endl;
+
+}
+else{
+	cout<<x<<" "<<y<<endl;
+}
+
+}
