@@ -1,0 +1,101 @@
+ // basic recursion
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+		 int ans=calculatepath(n);
+		 System.out.println(ans);
+		 
+	}
+ 
+ public static int calculatepath(int n)
+ {
+    if(n==0)
+    return 1;// if we stand on the destination, then we have 1 path , keep standing on that position..
+    if(n<0)
+    return 0;//if go to negative so there is no path
+    
+    
+    //as we have 3 choice so
+    System.out.println(n);
+    int nm1=calculatepath(n-1);
+    int nm2=calculatepath(n-2);
+    int nm3 = calculatepath(n-3);
+    
+    int pathforn= nm1+nm2+nm3;
+    return pathforn;
+ }
+	 
+}
+
+// tabulation
+
+ // basic recursion
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+		 int ans=tabulationcalculatepath(n,new int [n+1]);
+		 System.out.println(ans);
+		 
+	}
+ 
+ public static int calculatepath(int n)
+ {
+    if(n==0)
+    return 1;// if we stand on the destination, then we have 1 path , keep standing on that position..
+    if(n<0)
+    return 0;//if go to negative so there is no path
+    
+    
+    //as we have 3 choice so
+    System.out.println(n);
+    int nm1=calculatepath(n-1);
+    int nm2=calculatepath(n-2);
+    int nm3 = calculatepath(n-3);
+    
+    int pathforn= nm1+nm2+nm3;
+    return pathforn;
+ }
+ 
+ public static int tabulationcalculatepath(int n,int []  store)
+ {
+     if(n==0)
+    return 1;// if we stand on the destination, then we have 1 path , keep standing on that position..
+    if(n<0)
+    return 0;//if go to negative so there is no path
+    
+    if(store[n]!=0)
+    return store[n];
+    
+    //as we have 3 choice so
+    System.out.println(n);
+    int nm1= tabulationcalculatepath(n-1,store);
+    int nm2=tabulationcalculatepath(n-2,store);
+    int nm3 = tabulationcalculatepath(n-3,store);
+    
+    int pathforn= nm1+nm2+nm3;
+    store[n]=pathforn;
+    return pathforn;
+ }
+ 
+	 
+}
