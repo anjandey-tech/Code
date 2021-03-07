@@ -37,10 +37,8 @@ class Codechef
 	 
 }
 
-// tabulation
-
- // basic recursion
-/* package codechef; // don't place package name! */
+// memorization
+ 
 
 import java.util.*;
 import java.lang.*;
@@ -53,30 +51,13 @@ class Codechef
 	{
 		Scanner scn = new Scanner(System.in);
 		int n = scn.nextInt();
-		 int ans=tabulationcalculatepath(n,new int [n+1]);
+		 int ans=memorizationculatepath(n,new int [n+1]);
 		 System.out.println(ans);
 		 
 	}
  
- public static int calculatepath(int n)
- {
-    if(n==0)
-    return 1;// if we stand on the destination, then we have 1 path , keep standing on that position..
-    if(n<0)
-    return 0;//if go to negative so there is no path
-    
-    
-    //as we have 3 choice so
-    System.out.println(n);
-    int nm1=calculatepath(n-1);
-    int nm2=calculatepath(n-2);
-    int nm3 = calculatepath(n-3);
-    
-    int pathforn= nm1+nm2+nm3;
-    return pathforn;
- }
  
- public static int tabulationcalculatepath(int n,int []  store)
+ public static int memorizationcalculatepath(int n,int []  store)
  {
      if(n==0)
     return 1;// if we stand on the destination, then we have 1 path , keep standing on that position..
@@ -88,14 +69,64 @@ class Codechef
     
     //as we have 3 choice so
     System.out.println(n);
-    int nm1= tabulationcalculatepath(n-1,store);
-    int nm2=tabulationcalculatepath(n-2,store);
-    int nm3 = tabulationcalculatepath(n-3,store);
+    int nm1= memorizationcalculatepath(n-1,store);
+    int nm2=memorizationcalculatepath(n-2,store);
+    int nm3 = memorizationcalculatepath(n-3,store);
     
     int pathforn= nm1+nm2+nm3;
     store[n]=pathforn;
     return pathforn;
  }
+ }
+
+
+
+
+
+
  
+ 
+//tabulation
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+		 int ans=tabulationcalculatepath(n);
+		 System.out.println(ans);
+		 
+	}
+ 
+ 
+ 
+ public static int tabulationcalculatepath(int n)
+ { 
+    
+    
+    int [] dp =  new int [n+1];
+    
+    dp[0]=1;
+for(int i=1;i<=n;i++)
+    {
+       
+      if(i==1)
+      dp[i]=dp[i-1];
+       else if(i==2)
+       dp[i]=dp[i-1]+dp[i-2];
+       else
+     dp[i]=dp[i-1]+dp[i-2]+dp[i-3];
+
+    }
+    
+    for(int i=0;i<n;i++)  System.out.println(dp[i]);
+    
+    return dp[n];
+    
+ }
 	 
 }
