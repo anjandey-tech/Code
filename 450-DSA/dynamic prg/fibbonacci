@@ -1,0 +1,72 @@
+// basic recursion
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+		int fibonacci=calculatefibonacci(n);
+	System.out.println(fibonacci);
+	}
+	public static int calculatefibonacci(int n)
+	{
+	   if(n<=1)
+	   return n;
+	  	System.out.println(n);// it shows how many recursive call is exexuted
+	   int fibonminus1=calculatefibonacci(n-1);
+	   int fibonminus2=calculatefibonacci(n-2);
+	   int fiboofn= fibonminus1+fibonminus2;
+	   return fiboofn;
+	}
+}
+// dp code//momorization
+
+ // basic recursion
+/* package codechef; // don't place package name! */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+/* Name of the class has to be "Main" only if the class is public. */
+class Codechef
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner scn = new Scanner(System.in);
+		int n = scn.nextInt();
+		int [] store = new int [n+1]; 
+		int fibonacci=calculatefibonacci(n,store);
+     	System.out.println(fibonacci);
+     	// for(int i=0;i<n+1;i++)
+     	// {
+     	//     System.out.print(i+ " ");
+     	//    System.out.println(store[i]);
+     	// }
+	}
+	public static int calculatefibonacci(int n, int [] store)
+	{
+	   if(n<=1)
+	   return n;
+	   
+	   if(store[n]!=0)
+	   {
+	      return store[n];
+	   }
+	    //System.out.println("hello" + n);
+	   int fibonm1 = calculatefibonacci(n-1,store);
+	   int fibonm2 = calculatefibonacci(n-2,store);
+	   int fiboofn=fibonm2+fibonm1;
+	   
+	   store[n]=fiboofn;
+	   return fiboofn;
+	}
+	 
+}
