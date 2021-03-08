@@ -1,0 +1,45 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+int main() 
+{ 
+   
+   int r,c;
+   cin>>r>>c;
+   int mat[r][c];
+	 for(int i=0;i<r;i++)
+    {
+       for(int j=0;j<c;j++)
+       {
+          cin>>mat[i][j];
+       }
+    }
+    
+   //  for(int i=0;i<r;i++)
+   //  {
+   //     for(int j=0;j<c;j++)
+   //     {
+   //        cout<<mat[i][j];
+   //     }
+   //  }
+ map<int,int> mp;
+    for(int i=0;i<r;i++)
+    {
+       for(int j=0;j<c;j++)
+       {
+          mp[mat[i][j]]++;
+       }
+    }
+    
+    for(auto it: mp)
+    cout<<it.first<<" "<<it.second;
+    cout<<endl;
+    for(auto it:mp)
+    {
+       if(it.second == r)
+       {
+          cout<<it.first<<endl;
+       }
+    } 
+
+	return 0; 
+} 
