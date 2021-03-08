@@ -1,0 +1,21 @@
+int sb(int arr[], int n, int x)
+{
+     int ans=INT_MAX;
+     int i=0,j=0,sum=0;
+     while(i<=j and j<n)
+     {
+         while(sum<=x and j<n)
+         {
+             sum+=arr[j];
+             j++;
+         }
+         
+         while(sum>x and i<j)
+         {
+             ans=min(ans,j-i);
+             sum-=arr[i];
+             i++;
+         }
+     }
+     return ans;
+}
