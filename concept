@@ -38,3 +38,9 @@ int main()
 in nested if statement program check every if condition
 
 in if else if statement program check first true condition , then left the conditional block
+
+You can also have else if statements. As the name suggests, it is a combination of else and if. Like else,
+it extends an if statement to execute a different set of statements in case the original if expression evaluates to false. 
+Then, the conditions present inside the else if blocks are checked. Once a condition evaluates to true, remaining else if and else statements are skipped.
+
+When all the conditions are false, the else block is executed. Coding the else block is optional.
