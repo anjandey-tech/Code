@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{    
+int vertix, edge;
+cin>>vertix>>edge; // 6 5 
+vector<int> graph[vertix+1]; // we declare 2d vector , row = vertix +1, we dont mention column
+for(int  i=0;i<edge ;i++)
+{
+ int x,y;
+  cin>>x>>y;// 1 2 // 1  5  // 2  3 // 3  4 //3  6
+ graph[x].push_back(y);
+ graph[y].push_back(x);
+}
+for(int i=1;i<=vertix;i++)
+{
+cout<<"size = " <<graph[i].size()<<endl;//number of adjacent vertex
+cout<<i<< " ----------"; // print vertex
+for(int j=0; j<graph[i].size();j++)
+{
+    cout<<graph[i][j]<<" "; // we print adjacent vertex
+}
+     cout<<endl;
+ }
+      vector<int> storenode;
+	    vector<int> visitedarr(vertix,0);
+	    queue<int> q;
+	    q.push(1); //push root node
+	    visitedarr[1]=1; // make root node visited
+	    while(!q.empty())
+	    {
+	        int ele = q.front(); 
+	        q.pop();
+	        storenode.push_back(ele);// store vertix
+	        for(auto it:graph[ele]) //iterate over adjacent vertix
+	        {
+	            if(!visitedarr[it])
+	            {
+	               visitedarr[it]=1; //make visited
+	               q.push(it); // push queue
+	            }
+	        }
+	    }
+	    for(auto it : storenode)
+	    cout<<it<<" ";
+}
+//approach --> at first seach a node and make visited of its adjacent vertix
+  
