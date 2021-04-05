@@ -1,21 +1,29 @@
  #include<bits/stdc++.h>
 using namespace std;
- 
+
+ // } Driver Code Ends
 class Solution {
 public:
-     vector<int>v; //for storing travered node
-     void solve(int src, vector<int>  vis ,vector<int> g[])
+     vector<int>v;
+     void solve(int src, vector<int> & vis ,vector<int> g[])
      {
-         vis[src]=1;  // make node visited
-         v.push_back(src); // push node
-             if(!vis[x]) // not visited
+         vis[src]=1;
+         v.push_back(src);
+         for(auto x: g[src])
+         {
+             if(!vis[x])
              {
-                 solve(x,vis,g); //recursive call to fun
+                 solve(x,vis,g);
              }
          }
      }
 
-      vector<int>dfsOfGraph(int V, vector<int> adj[])
+
+
+
+
+
+	vector<int>dfsOfGraph(int V, vector<int> adj[])
 	{
 	 v.clear();
 	 vector<int> vis(V,0);
@@ -23,16 +31,16 @@ public:
 	 return v;
 	}
 };
- 
+
+// { Driver Code Starts.
 int main(){
 	int tc;
 	cin >> tc;
-	while(tc--)
-	{
+	while(tc--){
 		int V, E;
     	cin >> V >> E;
 
-    	vector<int> adj[V]; 
+    	vector<int> adj[V];
 
     	for(int i = 0; i < E; i++)
     	{
@@ -41,7 +49,8 @@ int main(){
     		adj[u].push_back(v);
     		adj[v].push_back(u);
     	}
-         
+        // string s1;
+        // cin>>s1;
         Solution obj;
         vector<int>ans=obj.dfsOfGraph(V, adj);
         for(int i=0;i<ans.size();i++){
