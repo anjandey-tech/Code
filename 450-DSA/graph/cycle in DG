@@ -1,0 +1,87 @@
+//in topological sort we print 0 indegree vertix then remove edge ,as a result we get new 
+//zero indegree vertix.
+// here we apply topological sort algo. topological sort is applicable on DAG
+// IF WE apply topological sort ON DIRECTED Cyclic graph , then all the vertix is not come under 
+// topological sort
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+	bool isCyclic(int V, vector<int> adj[]) 
+	{
+	    vector<int> indegre(V,0); // size = number of vertix and at first make each node indegre =0
+	    queue<int> q;
+	    for(int i=0;i<V;i++)
+	    {
+	        for(auto it: adj[i])
+	        {
+	             indegre[it]++;
+	        }
+	    }
+	    
+	    for(int i=0;i<V;i++)
+	    {
+	        if(indegre[i]==0)
+	        q.push(i);
+	    }
+	    
+	    int numberofeleinqueue = q.size();
+	    
+	    while(!q.empty())
+	    {
+	        int ele = q.front();
+	        q.pop();
+	        for(auto it : adj[ele])
+	        {
+	            indegre[it]--;
+	            if( indegre[it]==0)
+	            {
+	                q.push(it);
+	                numberofeleinqueue++;
+	                
+	            }
+	        }
+	    }
+	    if(numberofeleinqueue==V) return false;  //no cycle
+	   else return true; // cycle
+	}
+};
+
+ 
+
+
+int main()
+{
+    
+    int t;
+    cin >> t;
+    while(t--)
+    {
+    	int V, E;
+    	cin >> V >> E;
+
+    	vector<int> adj[V];
+
+    	for(int i = 0; i < E; i++)
+    	{
+    		int u, v;
+    		cin >> u >> v;
+    		adj[u].push_back(v);
+    	}
+
+    	Solution obj;
+    	//cout << obj.isCyclic(V, adj) << "\n";
+    	
+    	if(obj.isCyclic(V,adj))
+    	{
+    	  cout<<"Cycle";  
+    	}
+    	else
+    	{
+    	    cout<<"no cycle";
+    	}
+    }
+
+    return 0;
+}
+ 
