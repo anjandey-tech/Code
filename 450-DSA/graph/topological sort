@@ -1,0 +1,65 @@
+ #include <bits/stdc++.h>
+using namespace std;
+int main()
+{    
+int vertix, edge;
+cin>>vertix>>edge; // 6 5 
+vector<int> graph[vertix]; // we declare 2d vector , row = vertix +1, we dont mention column
+for(int  i=0;i<edge ;i++)
+{
+ int x,y;
+  cin>>x>>y;// 1 2 // 1  5  // 2  3 // 3  4 //3  6
+ graph[x].push_back(y);
+ //graph[y].push_back(x); // because graph is directed
+}
+for(int i=0;i<vertix;i++)
+{
+cout<<"size = " <<graph[i].size()<<endl;//number of adjacent vertex
+cout<<i<< " ----------"; // print vertex
+for(int j=0; j<graph[i].size();j++)
+{
+    cout<<graph[i][j]<<" "; // we print adjacent vertex
+}
+     cout<<endl;
+ }
+ 
+  vector<int> indegre(vertix,0); // size = number of vertix and at first make each node indegre =0
+	     vector<int> ans; // which i will return
+	     queue <int> q;
+	     //for counting indegre of each node.
+	     for(int i=0;i<vertix;i++)
+	     {
+	         for(auto it :graph[i])
+	         {
+	             indegre[it]++;
+	         }
+	     }
+	   //initially we have push all 0 indegre vertix to the queue  
+	     for(int i=0;i<vertix;i++)
+	     {
+	         if(indegre[i]==0)
+	         q.push(i);
+	     }
+	     
+	     //remove 0 indegre node from the queue and reduce the indegre of its adjacent vertix
+	     
+	     while(!q.empty())
+	     {
+	         int fr = q.front(); //take zero indegre vertix
+	         q.pop();
+	         ans.push_back(fr); // pushing our ans
+	         for(auto it : graph[fr]) // reduce the indegre of its adjacent vertix
+	         {
+	             indegre[it]--;
+	             if(indegre[it]==0)
+	             {
+	                 q.push(it);
+	             }
+	         }
+	         
+	     }
+	     for(auto it : ans)
+	     cout<<it<<" ";
+       
+ }
+	    
