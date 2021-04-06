@@ -1,0 +1,53 @@
+//Minimum time taken by each job to be completed given by a Directed Acyclic Graph
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	 int testcase;
+	 cin>>testcase;
+	 while(testcase--)
+	 {
+	     int vertix, edge;
+	     cin>>vertix>>edge;
+	     vector<int> adj[vertix+1] ;
+	     vector <int> inderge(vertix+1,0);
+	     while(edge--)
+	     {
+	         int u,v;
+	         cin>>u>>v;
+	         adj[u].push_back(v);
+	         inderge[v]++;
+	         
+	     }
+	     
+	     vector<int> ans(vertix+1,0);
+	     queue<int> q;
+	     for(int i=1;i<=vertix;i++)
+	     {
+	         if(inderge[i]==0)
+	         q.push(i);
+	         ans[i]=1;
+	     }
+	     
+	     while(!q.empty())
+	     {
+	         int ele = q.front();
+	         q.pop();
+	         for(auto it:adj[ele])
+	         {
+	             inderge[it]--;
+	             if(inderge[it]==0)
+	             {
+	                 
+	                 ans[it]=ans[ele]+1;q.push(it);
+	             }
+	         }
+	     }
+	     for(int i=1;i<=vertix;i++)
+	     {
+	         cout<<ans[i]<<" ";
+	     }
+	     cout<<endl;
+	 }
+	return 0;
+}
