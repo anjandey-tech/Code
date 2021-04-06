@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+    int vertix,edge;
+    cin>>vertix>>edge;
+    vector<int> adj[vertix];
+    for(int i=0;i<edge;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    int res[vertix];
+     bool available[vertix];//describe color is free or not
+     res[0]=0; // 0th node color with zero named color
+     for(int i= 1;i<vertix;i++)//make another node uncolor except root node -> zero node
+     res[i]=-1;
+      for(int i=0;i<vertix;i++)
+      {
+          available[i]=false;  // make all color available
+      }
+       int cromaticnum =0;
+       //below loop keep track which color has used to color adjacent vertix
+       for(int i=1;i<vertix;i++) // loop for all node
+       {
+           for(auto x:adj[i]) //loop of adj of the node
+           {
+               if(res[x]!=1) // adj is colored 
+               {
+                   available[res[x]]=true; //make that color unavailable
+               }
+           }
+           int cr;
+           for(cr=0;cr<vertix;cr++) // iterater of available from zero 
+               //to find the lowest available color
+           {
+               if(available[cr]==false)//color is free
+               {
+                   break;
+               }
+           }
+           res[i]=cr;//assign lowest color to the node
+          cromaticnum=max(cr+1,cromaticnum);//root node zero so we have to add 1 to cr 
+          
+          //reset available color vector 
+           for(auto x: adj[i])
+           {
+             available[res[x]]=false;     
+           }
+       }
+    cout<<cromaticnum<<endl;
+    for(int i=0;i<vertix;i++)
+    {
+        cout<<res[i]<< " ";
+    }
+	 
+	return 0;
+}
+
+input -> 
+5 6
+0 1
+1 3
+2 3
+0 2
+2 4
+1 4
