@@ -95,7 +95,7 @@ struct Node
     }
 };
 */
-class Solution{
+class Solution{  //this the actual function
     public:
     //Function to find the height of a binary tree.
     int height(struct Node* node){
