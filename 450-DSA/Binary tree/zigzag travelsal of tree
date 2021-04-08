@@ -122,10 +122,12 @@ vector <int> zigZagTraversal(Node* root)
 	 return answer;
 	  q.push(root);
 	 int levelchecker =1;
-	  while(!q.empty())
+	  while(!q.empty())  
 	  {
 	       int sz = q.size();
-	       vector<int> temp;
+	       vector<int> temp;  //store the node of each level
+	       //and temp is created for each level so we need not to clear it
+	       
 	       while(sz--)
 	       {
 	           Node * t =  q.front();
