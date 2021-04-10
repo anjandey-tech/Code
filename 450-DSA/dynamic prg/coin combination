@@ -1,0 +1,32 @@
+ #include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;//number of coin
+    cin>>n;
+    int arr[n];//coin arr
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    int amt;
+    cin>>amt;
+    int dp[amt+1]; // dp[i] denotes how many way we have to pay i
+    for(int i=0;i<amt+1;i++)
+    {
+        dp[i]=0;
+    }
+    dp[0]=1;
+    for(int i=0;i<n;i++) //coin arr
+    {
+        for(int j=arr[i];j<amt+1;j++)
+        {
+            dp[j]=dp[j]+dp[j-arr[i]];
+        }
+    }
+    cout<<dp[amt]<<endl;
+    for(int i=0;i<amt+1;i++)
+    {
+        cout<<dp[i]<<" ";
+    }
+}
