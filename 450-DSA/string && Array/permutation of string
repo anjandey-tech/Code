@@ -1,0 +1,29 @@
+List<String> ans=new ArrayList<String>(); 
+    
+   void solve(String S,String asf)
+    {
+        if(S.length()==0){
+        ans.add(asf);
+        return;
+        }
+        
+         for(int i=0;i<S.length();i++)
+        {
+            char ch = S.charAt(i);
+            
+            String right = S.substring(i+1);
+            String left = S.substring(0,i);
+            String ros = right+left;
+            solve(ros,asf+ch);
+            
+            
+        }
+    }
+    public List<String> find_permutation(String S) 
+    {
+    //      char charArray[] = S.toCharArray();
+    //   Arrays.sort(charArray);
+    //   String ups = new String(charArray);
+        solve(S,"");
+        Collections.sort(ans);
+       return ans;
