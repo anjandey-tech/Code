@@ -1,0 +1,47 @@
+ #include<bits/stdc++.h>
+ using namespace std;
+ int main()
+ {
+        int n;
+        cin>>n;//number of good
+
+        int values[n];
+      //  String str1 = br.readLine();
+        for (int i = 0; i < n; i++) {
+            cin>>values[i];
+        }
+
+        int wts[n] ;
+      //  String str2 = br.readLine();
+        for (int i = 0; i < n; i++) {
+           cin>>wts[i] ;
+        }
+
+        int cap;
+        cin>>cap;
+
+        int dp[cap + 1];
+        for(int i=0;i<cap+1;i++)
+        {
+            dp[i]=0;
+        }
+        for (int i = 1; i < cap+1; i++) {
+           for(int j = 0; j < n; j++){
+               int val = values[j];
+               int wt = wts[j];
+
+               if(i >= wt){
+                   int factor = dp[i - wt] + val;
+                   if(factor > dp[i]){
+                       dp[i] = factor;
+                   }
+               }
+           }
+        }
+
+         cout<<dp[cap];
+    
+}
+
+
+                        
