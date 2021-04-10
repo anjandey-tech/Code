@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int Arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>Arr[i];
+    }
+    int target ;
+    cin>>target;
+    bool dp[n+1][target+1];
+    for(int i=0;i<n+1;i++)
+    {
+        for(int j=0;j<target+1;j++)
+        {
+            dp[i][j]=false;
+        }
+    }
+    for(int i=0;i<n+1;i++) // 
+    {
+        for(int j=0;j<target+1;j++)
+        {
+            if(i==0  and j== 0 ) // first column
+            {
+                dp[i][j]=true;
+            }
+            
+            else if(i==0) // first row
+            {
+                dp[i][j]=false;
+            }
+            
+            else if(j==0) //first column
+            {
+                dp[i][j]=true;
+            }
+            else
+            {
+                // two case possible 
+                //first condition-> i dont play , 
+                //second condition -> i will play;
+                if(dp[i-1][j]==true) // i dont play, so i check rest of the member was able to make that                                         //point or not , if able then make it true
+                {
+                  dp[i][j]=true;  
+                }
+                else // i will play;
+                {
+                    int val = Arr[i-1];
+                    if(j>=val)//i play when the score is greater than my potential
+                    {
+                        if(dp[i-1][j-val]==true) //i play , and check remaining run can be donr by other
+                        // team member or not
+                        {
+                            dp[i][j]=true;
+                        }
+                    }
+                }
+                
+                
+            }
+        }
+    }
+    //   for(int i=0;i<n+1;i++)
+    // {
+    //     for(int j=0;j<target+1;j++)
+    //     {
+    //         cout<<dp[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+    
+    
+    if(dp[n][target] == true)
+    cout<<"true"<<endl;
+    else
+    cout<<"false"<<endl;
+     //cout<<dp[n][target]<<endl;
+    
+}
