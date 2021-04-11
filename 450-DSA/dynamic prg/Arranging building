@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;//number of building
+    cin>>n;
+    int dpbuilding[n+1];
+    int dpspace[n+1];
+    //base case
+    dpbuilding[0]=0;
+    dpbuilding[1]=1;
+    dpspace[0]=0;
+    dpspace[1]=1;
+    for(int i=2;i<n+1;i++)
+    {
+        dpspace[i]=dpspace[i-1]+ dpbuilding[i-1];
+         dpbuilding[i]=dpspace[i-1];
+    }
+   long long  int ans = dpbuilding[n]+dpspace[n];
+    cout<<ans*ans<<endl;
+    
+}
