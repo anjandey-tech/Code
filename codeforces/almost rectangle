@@ -1,0 +1,103 @@
+ #include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int row1=0,row2=0,column1=0,column2=0;
+		int counter=0;
+		int n;
+		cin>>n;
+		char mat[n][n];
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				cin>>mat[i][j];
+			}
+		}
+	
+	
+	for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				 if(counter==1 )
+				 {
+				 	if(mat[i][j]=='*')
+				 	{
+				 		row2=i;
+				 		column2=j;
+					}
+				 }
+				 else 
+				 {
+				 	if(counter == 0 and mat[i][j]=='*')
+				 	{
+				 	    row1=i;
+						column1=j;
+						 counter++;
+					 }
+					
+				 }
+			}
+		}
+		
+// 		cout<<row1<<column1<<endl;
+// 		cout<<row2<<column2<<endl;
+
+if(row1 == row2 )
+{
+	if(row1+1==n)
+	{
+		mat[row1-1][column1]='*';
+		mat[row2-1][column2]='*';
+	}
+	else
+	{
+	
+   mat[row1+1][column1]='*';
+   mat[row2+1][column2]='*';
+   }
+}
+else if(column2 == column1)
+{
+   if(column1+1 == n)
+   {
+      mat[row1][column1 - 1]='*';
+      mat[row2][column2 - 1] = '*';
+   }
+   else 
+   {
+       mat[row1][column1 + 1]='*';
+      mat[row2][column2 + 1] = '*';
+      
+   }
+}
+	else{
+	mat[row1][column2]='*';
+	mat[row2][column1]='*';
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				cout<<mat[i][j];
+			}
+			cout<<endl;
+		}
+		//	cout<<" ------------------------------"<<endl;
+	}
+
+	
+}
