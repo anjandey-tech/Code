@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void dfs(int i, int j,int row, int column, int oldcolor, int newcolor, vector<vector<int>> & image, vector<vector<int>> & visit)
+    {
+        //chake base condition
+        if(i<0 or j<0  or i>=row or j>=column)
+            return ;
+        if(visit[i][j])//visited so dont visit again
+            return ;
+        if(image[i][j]!=oldcolor)//not  same color as the starting pixel
+            return;
+        visit[i][j]=1; //make unvisited node to visited node
+     image[i][j]=newcolor; // assign new color
+        dfs(i+1,j,row,column,oldcolor,newcolor,image,visit);
+        dfs(i-1,j,row,column,oldcolor,newcolor,image,visit);
+        dfs(i,j+1,row,column,oldcolor,newcolor,image,visit);
+        dfs(i,j-1,row,column,oldcolor,newcolor,image,visit);
+        
+        
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newcolor) 
+    {
+        int row= image.size(); // taking row given matrix
+        int column = image[0].size(); // taking columm of given matrix
+        int oldcolor = image[sr][sc]; // taking old color. and this is the starting poition
+        vector<vector<int>> visit(row,vector<int>(column,0));//visited arr initialize to false =0;
+        dfs(sr,sc,row,column,oldcolor,newcolor,image,visit);
+            return image;
+    }
+};
