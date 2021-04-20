@@ -1,0 +1,41 @@
+class Solution {
+public:
+    
+     void dfs(int node, vector<int> adj[], vector<int> &visited)
+     {
+         visited[node]=1;
+       for(auto x:adj[node])
+       {
+           if(!visited[x])
+           {
+               dfs(x,adj,visited);
+           }
+       }
+         
+     }
+    
+    int makeConnected(int n, vector<vector<int>>& connections) 
+    {
+        vector<int> adj[n] ;//2d vector for graph
+        int noofedge= connections.size();
+        if(noofedge<n-1)
+            return -1;
+        for(int i=0;i<connections.size();i++)  //creating adjacency list
+        {
+            adj[connections[i][0]].push_back(connections[i][1]);
+            adj[connections[i][1]].push_back(connections[i][0]);
+            
+        }
+        vector<int> visited(n,0);
+        int connectedcomponent=0;
+        for(int i=0;i<n;i++) //finiding number of connected component usig dfs
+        {
+            if(!visited[i])
+            {
+                connectedcomponent++;
+                dfs(i,adj,visited);
+            }
+        }
+        return connectedcomponent-1;
+    }
+};
