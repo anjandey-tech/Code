@@ -1,0 +1,31 @@
+class Solution
+{
+    public:
+    //Function to return list containing elements of right view of binary tree.
+    vector<int> rightView(Node *root)
+    {
+       vector<int> answer;
+    queue<Node*> q;
+    if(root==NULL)
+    return answer;
+    q.push(root);
+     while(!q.empty())
+    {
+     Node* temp;
+    int size=q.size();
+    while(size--)//remove all the child
+    {
+         temp= q.front();
+        q.pop();
+        if(temp->left) q.push(temp->left);
+           if(temp->right) q.push(temp->right);
+        
+    }
+    answer.push_back(temp->data);//insert leftmode node of each level
+    }
+    return answer;
+     
+      
+      
+    }
+};
