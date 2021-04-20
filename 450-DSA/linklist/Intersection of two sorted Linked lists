@@ -1,0 +1,33 @@
+Node* findIntersection(Node* head1, Node* head2)
+{
+    // Your Code Here
+    Node* ptr1 = head1;
+    Node* ptr2 = head2;
+    Node* head = NULL, *temp = NULL;//head of new ll
+  while(ptr1 && ptr2)
+  {
+   if(ptr1->data == ptr2->data)
+   {
+         Node* newNode = new Node(ptr1->data);
+          if(head!=NULL)//this is not the first node of new ll
+        {
+       temp->next = newNode;
+       
+        }
+      else  ////when first node of new ll is not created
+        {
+            head= newNode;
+            
+        } 
+          temp = newNode; //assigning temp to current node of new ll
+      
+ptr1 = ptr1->next;//move each pointer one step
+ptr2 = ptr2->next;
+}
+else if(ptr1->data < ptr2->data) 
+      ptr1 = ptr1->next;
+else
+ ptr2 = ptr2->next;
+}
+return head;//return head of new node
+}
