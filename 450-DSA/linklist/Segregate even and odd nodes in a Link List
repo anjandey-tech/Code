@@ -1,0 +1,36 @@
+class Solution{
+public:
+    Node* divide(int N, Node *head){
+        
+        
+        vector<int>even;
+        vector<int>odd;
+Node* p = head;
+
+while (p != NULL) 
+{
+if ((p->data) % 2 == 0)
+even.push_back(p->data);
+else
+odd.push_back(p->data);
+p = p->next;
+}
+
+Node* q = new Node(0);//even
+Node * r = q;
+
+for (int i = 0; i < even.size(); i++) {
+Node * temp = new Node( even[i]);
+q->next = temp;
+q = temp;
+
+}
+for (int i = 0; i < odd.size(); i++) {
+Node * temp = new Node( odd[i]);
+q->next = temp;
+q = temp;
+}
+return r->next;
+        // code here
+    }
+};
