@@ -1,0 +1,32 @@
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head)
+    {
+        ListNode* cur =head;
+        int count=0;
+        while(cur)
+        {
+            count++;
+            cur=cur->next;
+        }
+        cout<<count;
+        
+        int ans=count/2;  // 5 2
+        int dif = ans-count;//2
+        int ansst=ans;//2
+        while(ansst--)//2
+        {
+            head=head->next;
+        }
+        ListNode* temp =head;//3
+        ListNode* newhead=head;//3
+        for(int i=ans;i<count;i++)//i=2,i<5
+        {
+            temp=head;
+            temp=temp->next;
+            head=head->next;
+            
+        }
+        return newhead;
+    }
+};
