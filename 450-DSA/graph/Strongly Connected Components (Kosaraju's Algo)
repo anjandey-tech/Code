@@ -1,0 +1,60 @@
+vector<int> order;
+    void dfs(int src , vector<int> &vis, vector<int>adj[])
+    {
+        vis[src]=1;
+        for(auto x: adj[src])
+        {
+            if(!vis[x])
+            {
+                dfs(x,vis,adj);
+            }
+        }
+        order.push_back(src); //push into order vector when node and its all adjacent are visited  
+    }
+    
+    void rdfs(int src , vector<int> &vis1, vector<int>rev[])
+    {
+        vis1[src]=1;
+        for(auto x: rev[src])
+        {
+            if(!vis1[x])
+            {
+                rdfs(x,vis1,rev);
+            }
+        }
+    }
+    int kosaraju(int V, vector<int> adj[])
+    {
+        //order.clear();//for testcase given 
+        vector<int> rev[V];//store adj of reverse graph
+        //reverse the given graph
+        for(int y=0;y<V;y++)
+        {
+            for(auto x : adj[y])
+            {
+                rev[x].push_back(y);
+            }
+        }
+        
+        vector<int> vis(V,0); //visited arr of orginal graph
+        //dfs
+        for(int i=0;i<V;i++)
+        {
+            if(!vis[i])
+            {
+                dfs(i,vis,adj);
+            }
+        }
+        ////visited arr of rev graph
+        vector<int> vis1(V,0);
+        int com=0; //count of ssc
+        for(int i=V-1;i>=0;i--)//start from the last of order vector
+        {
+            if(!vis1[order[i]])
+            {
+                rdfs(order[i],vis1,rev);
+                com++;
+            }
+        }
+        return com;
+    }
