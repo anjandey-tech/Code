@@ -1,0 +1,36 @@
+ bool detectLoop(Node* head)
+    {
+    //     if(head == NULL) //no node no loop
+    //     return false;
+    //     unordered_map<Node*, int> mp; // we can not push node->data because in ll same data may be present in differnt address location
+                                        //so we have to push whole node;
+    //   while(head!=NULL)
+    //   {
+    //       if(mp[head]==NULL) // if that node is not visited
+    //       {
+    //           mp[head]=1; //visited
+    //           head=head->next; // move to next node
+    //       }
+    //       else  //node already visited
+    //       {
+    //           return true;
+    //       }
+    //   }
+    //   return false;
+    //}
+    //another approach hare and tortoise method
+     Node* low = head;
+     Node* high = head;
+     if(head == NULL or head->next == NULL)
+     return false;
+     while(high->next!=NULL and high->next->next !=NULL)
+     {
+         low=low->next;
+         high=high->next->next;
+         if(low == high)
+         return true;
+         
+     }
+     return false;
+    
+    }
