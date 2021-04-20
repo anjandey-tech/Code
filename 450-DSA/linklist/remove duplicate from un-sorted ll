@@ -1,0 +1,29 @@
+Node * removeDuplicates( Node *head) 
+    {
+        
+            Node* cur=head;
+            Node* prev=cur;
+            if(head==NULL)
+            return NULL;
+            unordered_map<int,int> mp;
+            mp[cur->data]=1;
+            cur=cur->next;
+            while(cur)
+            {     
+                if(mp[cur->data]==0) // not visited
+                {
+                  mp[cur->data]=1;
+                   prev=prev->next;
+                }
+                else if(mp[cur->data])//data already present
+                {
+                    prev->next=prev->next->next;
+                }
+                cur=cur->next;
+                
+            }
+            // for(auto it : mp)
+            // cout<<it.first<<" "<<it.second<<endl;
+            return head;
+     // your code goes here
+    }
