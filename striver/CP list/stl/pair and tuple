@@ -1,0 +1,24 @@
+//pair<int,int> a; //way 1 cin>>a.first>>a.second; //way 2 int x,y; cin>>x>>y; a = make_pair(x,y);
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    pair<pair<int,int>,vector<pair<string,double>>> p3=
+    make_pair(make_pair(2,3),vector<pair<string,double>>
+    {
+        make_pair("anjan",0.0001),make_pair("xyz",0.2211),
+        make_pair("avd",0.3214)
+        
+    } 
+    );
+        cout<<p3.first.first<<endl;
+        cout<<p3.first.second<<endl;
+        cout<<p3.second[0].first<<endl;
+        cout<<p3.second[2].second<<endl;
+ 
+	return 0;
+}
+
+///tuple
+https://www.geeksforgeeks.org/tuples-in-c/
