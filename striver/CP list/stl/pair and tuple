@@ -22,3 +22,38 @@ int main() {
 
 ///tuple
 https://www.geeksforgeeks.org/tuples-in-c/
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+ int t;
+ cin>>t;
+ while(t--)
+ {
+    int n;
+    cin>>n;
+    pair<string,string> p[n];
+    map<string,int> m;
+     for(int i=0;i<n;i++)
+    {
+        cin>>p[i].first>>p[i].second;
+        m[p[i].first]++;
+        
+    }
+   for(int i=0;i<n;i++)
+    {
+       if(m[p[i].first]==1)
+       {
+          cout<<p[i].first<<endl;
+       }
+       else if(m[p[i].first]>=2)
+       {
+           cout<<p[i].first<<" " <<p[i].second<<endl;
+       }
+    }
+ }
+	return 0;
+}
