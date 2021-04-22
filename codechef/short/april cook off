@@ -1,0 +1,115 @@
+ //https://www.youtube.com/watch?v=-NTCaZzifik&t=734s
+ //check appticopy for detail explanation
+ #include<bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+const int mxN=35;  //make 2 ki power arr
+int two[mxN];
+
+void pre()
+{
+  two[0]=1;
+
+  for(int i=1;i<mxN;i++)
+    two[i]=two[i-1]*2;   //1  2  4   8  16  32  
+    
+   //  for(int i=0;i< mxN;i++){
+   //  cout<<two[i]<<" ";
+   //  cout<<endl;
+    //}
+}
+ 
+
+void solve()
+{
+  int n,q;
+  cin>>n>>q;
+
+  int a[n];
+
+  int cnt[mxN]={}; // count the set bit of all number of every position(oth position, 1st position)
+
+  for(int i=0;i<n;i++)
+  {
+    cin>>a[i];
+    int x=a[i];
+
+    int ind=0;
+
+    while(x)
+    {
+      if(x%2)
+        cnt[ind]++;
+      x/=2;
+      ind++;
+    }
+  }
+//basically in cnt we store binary format , now we convert into decimal
+  int ans=0;
+
+  for(int i=0;i<mxN;i++)
+  {
+    if(cnt[i]!=0)
+      ans+=two[i];  
+  }
+
+  cout<<ans<<"\n";
+
+  while(q--)
+  {
+    int x,v;
+    cin>>x>>v;
+    x--;
+
+    int temp=a[x];
+    int ind=0;
+
+    while(temp)
+    {
+      if(temp%2!=0)   //remove the contribution of the number from the cnt arr which we have to remove acc to question  ;
+        cnt[ind]--;
+      temp/=2;
+      ind++;
+    }
+
+    a[x]=v; //store new element of the given position
+    temp=v;
+    ind=0;
+
+    while(temp)     //add contribution to the cnt arr of new element
+    {
+      if(temp%2!=0)
+        cnt[ind]++;
+      temp/=2;
+      ind++;
+    }
+
+    ans=0;
+//againt chenge to binary to decimal
+    for(int i=0;i<mxN;i++)
+    {
+      if(cnt[i]!=0)
+        ans+=two[i];
+    }
+
+    cout<<ans<<"\n";
+  }
+}
+
+int32_t main()
+{
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+
+  pre();
+
+  int t;
+  cin>>t;
+
+  while(t--)
+    solve();
+
+return 0;
+}
