@@ -1,0 +1,95 @@
+//Problem Code:FLOW007
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	   long long int n;
+	   cin>>n;
+	   list<long long int> ll;
+	    while(n)
+	    {
+	       ll.push_front(n%10);
+	       n=n/10;
+	       
+	    }
+	    list <long long int> :: reverse_iterator it;
+	    int ans=0;
+	    for( it = ll.rbegin();it!=ll.rend();it++)
+	    {
+	       ans=ans*10;  
+	       ans=ans+(*it);
+	         cout<<ans<<endl;
+	    }
+	    cout<<ans;
+	    
+	}
+	return 0;
+	
+}
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <list>
+#include <iterator>
+using namespace std;
+
+//function for printing the elements in a list
+void showlist(list <int> g)
+{
+	list <int> :: iterator it;
+	for(it = g.begin(); it != g.end(); ++it)
+		cout << '\t' << *it;
+	cout << '\n';
+}
+
+int main()
+{
+
+	list <int> gqlist1, gqlist2;
+
+
+	for (int i = 0; i < 10; ++i)
+	{
+		gqlist1.push_back(i * 2);
+		gqlist2.push_front(i * 3);
+	}
+	cout << "\nList 1 (gqlist1) is : ";
+	showlist(gqlist1);
+
+	cout << "\nList 2 (gqlist2) is : ";
+	showlist(gqlist2);
+
+	cout << "\ngqlist1.front() : " << gqlist1.front();
+	cout << "\ngqlist1.back() : " << gqlist1.back();
+
+	cout << "\ngqlist1.pop_front() : ";
+	gqlist1.pop_front();
+	showlist(gqlist1);
+
+	cout << "\ngqlist2.pop_back() : ";
+	gqlist2.pop_back();
+	showlist(gqlist2);
+
+	cout << "\ngqlist1.reverse() : ";
+	gqlist1.reverse();
+	showlist(gqlist1);
+
+	cout << "\ngqlist2.sort(): ";
+	gqlist2.sort();
+	showlist(gqlist2);
+
+	return 0;
+
+}
