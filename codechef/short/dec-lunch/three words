@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long 
+int main() {
+ ll	int t;
+	cin>>t;
+	while(t--)
+	{
+	   string s;
+	   cin>>s;
+	   //ll int countsinglechar=0;
+	   ll int countdoublechar=0;
+	vector< ll int> freq(26);//store the freq of char
+	 for(auto x:s)
+	 {
+	    freq[x - 'a']++;
+	 }
+// 	 for(auto it : freq)
+// 	 cout<<it<<" " ;
+// 	 cout<<endl;
+	 for(auto x: freq)
+	 {
+	    countdoublechar+=x/2;
+	 }
+	 int len = s.length()/3;
+	 //cout<<"len="<<len<<endl;
+//	 cout<<countdoublechar<<endl;
+	 if(countdoublechar>=len)
+	 {
+	     cout<<len<<endl;
+	 }
+	 else
+	 {
+	  cout<<countdoublechar<<endl;
+	 }
+	   
+}
+	
+	return 0;
+}
