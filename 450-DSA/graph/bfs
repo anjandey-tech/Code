@@ -46,3 +46,51 @@ for(int j=0; j<graph[i].size();j++)
 }
 //approach --> at first seach a node and make visited of its adjacent vertix
   
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{    
+int vertix, edge;
+cin>>vertix>>edge; // 6 5 
+vector<int> graph[vertix]; // we declare 2d vector , row = vertix +1, we dont mention column
+for(int  i=0;i<edge ;i++)
+{
+ int x,y;
+  cin>>x>>y; 
+ graph[x].push_back(y);
+ graph[y].push_back(x);
+}
+ 
+      vector<int> storenode;
+	    vector<int> visitedarr(vertix,0);
+	    for(int i=0;i<vertix;i++)
+	    {
+	       if(!visitedarr[i])
+	       {
+	           queue<int> q;
+	             q.push(i);  
+	               visitedarr[i]=1; // make root node visited
+	     while(!q.empty())
+	    {
+	        int ele = q.front(); 
+	        q.pop();
+	        storenode.push_back(ele);// store vertix
+	        for(auto it:graph[ele]) //iterate over adjacent vertix
+	        {
+	            if(!visitedarr[it])
+	            {
+	                q.push(it); // push queue
+	               visitedarr[it]=1; //make visited
+	              
+	            }
+	        }
+	    }   
+	       }
+	    }
+	   
+	  
+	  
+	  
+	    for(auto it : storenode)
+	    cout<<it<<" ";
+}
