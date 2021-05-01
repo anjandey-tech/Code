@@ -1,0 +1,73 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Main
+{
+    public static class pair
+    {
+        int i,s,j;  //i-> index; s = how mush step jump possible store in arr  ; j-> how muny jum                           require //to reach destination store in dp
+        String psf;
+        pair(int i, int s, int j , String psf)
+        {
+            this.i= i;
+            this.s= s;
+            this.j = j;
+            this.psf = psf;
+        }
+ }
+ 
+    public static void Solution(int arr[])
+    {
+        Integer [] dp = new Integer [arr.length];
+        dp[arr.length-1] = 0;
+        for(int i=arr.length-2;i>=0;i--)
+        {
+            int step = arr[i];
+            int min = Integer.MAX_VALUE;
+            for(int j=1;j<=step && (i+j)<arr.length;j++)
+            {
+               if( dp[i+j] != null && dp[i+j]<min)
+               {
+                   min=dp[i+j];
+               }
+            }
+            if(min != Integer.MAX_VALUE )
+            dp[i]=min+1;
+        }
+        System.out.println(dp[0]);
+        ArrayDeque<pair> deque = new ArrayDeque<>();
+        deque.add(new pair(0,arr[0],dp[0],""+ 0));
+        while(deque.size() > 0)
+        {
+            pair rem = deque.removeFirst();
+            if(rem.j == 0)
+            {
+                System.out.println(rem.psf +" .");
+            }
+            for(int j=1;j<=rem.s && rem.i+j<arr.length;j++)
+            {
+                int ci = rem.i+j;
+                if(dp[ci]!=null && dp[ci] == rem.j-1)
+                {
+                   deque.add(new pair(ci,arr[ci],dp[ci], rem.psf +" -> "+ci));
+                }
+            }
+        }
+        
+    }
+    
+
+    public static void main(String []args)
+    {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+
+        int arr[] = new int[n];
+        for(int i = 0 ; i < n ; i++)
+            arr[i] = scn.nextInt();
+
+        Solution(arr);
+        scn.close();
+    }
+}
