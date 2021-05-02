@@ -1,0 +1,88 @@
+//not ok
+#include<bits/stdc++.h>
+using namespace std;
+class Pair
+{
+    public:
+    int l; // length -> number of element in increasing subsequeuece -> store in dp
+    int i;
+    int val;
+    string psf;
+    public:
+    Pair(int l, int i ,int val, string psf)
+    {
+        this-> l = l;
+        this ->i = i;
+        this -> val = val;
+        this-> psf = psf;
+    }
+};
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    int dp[n];
+    for(int i=0;i<n;i++)
+    {
+        dp[i]=0;
+    }
+    
+    int omaxl = 0;
+    int omaxi = 0;
+    for(int i=0;i<n;i++)
+    {
+     int max=0;   
+        for(int j=0;j<i;j++)
+        {
+            if(arr[j]<=arr[i])
+            {
+                if(max<dp[j])
+                {
+                    max=dp[j];
+                }
+            }
+        }
+        dp[i]=max+1;
+        if(dp[i]>omaxl)
+        {
+            omaxl=dp[i];
+          //  omaxi=i;
+        }
+    }
+    cout<<omaxl<<endl;
+   // cout<< omaxi<<endl;
+    queue<Pair> q;
+    for(int i = 0; i < n; i++){
+            if(omaxl == dp[i]){
+                q.push(Pair(omaxl, i, arr[i], arr[i] + ""));
+            }
+        }
+  //  q.push(Pair(omaxl,omaxi,arr[omaxi],arr[omaxi] + " "));
+    
+        while(q.size() > 0){
+            Pair rem = q.front();
+            q.pop();
+            
+            if(rem.l == 1){
+                cout<<(rem.psf)<<endl;
+            }
+            
+            for(int j = rem.i - 1; j >= 0; j--)
+            {
+                if(dp[j] == rem.l - 1 && arr[j] <= rem.val)
+                {
+                   q.push(Pair(dp[j], j, arr[j], arr[j] + " -> " + rem.psf));
+                }
+            }
+        }
+    
+    
+    
+    
+    
+}
