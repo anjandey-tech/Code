@@ -1,31 +1,63 @@
-bool dfs(int src, int parent, vector<bool> &visited, vector<int> adj[])
+#include<bits/stdc++.h>
+using namespace std;
+
+bool dfscheckCycle(int node, int parent, vector<int> &vis, vector<int> adj[])
 {
-    visited[src]=true;
-    for(auto x: adj[src])
+    vis[node]=1;
+    for(auto it: adj[node])
     {
-        if(!visited[x])
+        if(vis[it] == 0)
         {
-            if(dfs(x,src,visited,adj))
+            if(dfscheckCycle(it,node,vis,adj))
             return true;
         }
-        else if(x!= parent)
+        else if(vis[it] !=0 and it == parent)  // visited but it is previous node // then it can't make cycle
+        continue;
+       
+        else if(vis[it] !=0 and it!= parent) // visited and this node is not visited by previous node, that means 
+        // it was visited by any other node, so the graph contain cycle. 
         return true;
     }
     return false;
 }
-	bool isCycle(int V, vector<int>adj[])
-	{
-	    vector<bool> visited(V,false);
-	    for(int i=0;i<V;i++)
-	    {
-	        if(!visited[i])
-	        {
-	            bool f = dfs(i,-1,visited,adj);
-	            if(f==true)
-	            return true;
-	        }
-	    }
-	    // Code here
-	    return false;
-	}
-};
+ 
+
+
+int main(){
+ 
+		int node,edge;
+    	cin >> node>> edge;
+    	vector<int> adj[node];
+   
+    	for(int i = 0; i < edge; i++)
+    	{
+    		int u, v;
+    		cin >> u >> v;
+    		adj[u].push_back(v);
+    		adj[v].push_back(u);
+    	}
+         vector<int> vis(node,0);
+         bool res = false;
+         for(int i=0 ;i< node; i++)
+         {
+           if(vis[i] == 0)
+           if(dfscheckCycle(i,-1,vis,adj) == true)
+           {
+             
+               res = true;
+            }
+       }
+        
+      
+        if(res == true)
+         cout<<"YES";
+       else
+       cout<<"NO";
+   
+       
+ 
+	
+	return 0;
+}
+ 
+ 
