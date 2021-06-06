@@ -1,0 +1,92 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool isCycle(int node , vector<int> adj[]);
+
+bool bfscheckCycle(int s, int node, vector<int> adj[],vector<int> &vis)
+{
+
+   queue<pair<int,int>> q;
+   vis[s] = 1;
+   q.push({s,-1});  // for only first pair of each component 
+   
+   while(!q.empty())
+   {
+      
+      int node = q.front().first;
+      int par  = q.front().second;
+      q.pop();
+      
+      
+      for(auto it: adj[node])
+      {
+         if(vis[it] == 0)   //node is not visited so add all its adjacent node
+                                // no chance of cycle  in this condition
+         {
+            q.push({it,node});
+            vis[it]=1;
+         }
+         
+         
+         else if(vis[it]!=0 and par == it)
+         {
+            continue; // node had been visited and it is parent of prev 
+         }
+         
+         else if(par!=it)   // node is visited and it is not parent of prev node, that means, this node has been visited
+         //by any other node , that  means  the graph contains cycle
+         {
+            return true;    
+         }
+      }
+      
+      
+      
+   }
+   
+   return false;
+}
+
+
+
+int main() 
+{
+	 int node,edge;
+	 cin>>node>>edge;
+	 vector<int> adj[node];
+	 for(int i=0; i<edge; i++)
+	 {
+	    int u,v;
+	    cin>>u>>v;
+	    adj[u].push_back(v);
+	    adj[v].push_back(u);
+	 }
+	
+      bool ans = false;
+	    vector<int> vis(node,0);
+	    
+	   for(int i = 0;i<node;i++) 
+	   {
+	      
+	      if(vis[i]==0)//not visited
+	      {
+	         if(bfscheckCycle(i,node,adj,vis))
+	         {
+	            ans = true;  //cycle present
+	         }
+	      }
+	   }
+	    
+	  if(ans == true)
+	  {
+	     cout<<"YES";
+	     
+	  }
+	  else if(ans == false)
+	  {
+	   cout<<"NO";  
+	  }
+	 
+	 
+	 
+	return 0;
+}
