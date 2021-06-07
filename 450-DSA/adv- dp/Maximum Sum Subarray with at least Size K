@@ -1,0 +1,73 @@
+//pepcoding //Maximum Sum Subarray with at least Size K | Dynamic Programming
+//https://www.youtube.com/watch?v=OodoQ95se20&list=PL-Jc9J83PIiEZvXCn-c5UIBvfT8dA-8EG&index=41
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+   int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    
+//        for(int i=0;i<n; i++)
+//     {
+//        cout<<arr[i]<<" ";
+//  }
+//  cout<<endl;
+    
+    int k;
+    cin>>k;
+    
+    int csum = arr[0];
+    int maxsum[n];
+   //  for(int i=0;i<n; i++)
+   //  {
+   //     maxsum[i]=0;
+   //  }
+    maxsum[0]= arr[0];
+    //apply kadena algo for best subarray till that position
+    
+    for(int i=1;i<n;i++)
+    {
+        if(csum>0)
+        {
+            csum+=arr[i];
+        }
+        else
+        {
+            csum = arr[i];
+        }
+        maxsum[i]=csum;
+    }
+    int ans = INT_MIN;
+    int exactk = 0;
+     for(int i=0;i<k;i++)
+    {
+         exactk +=arr[i];
+    }
+        if(exactk>ans)
+        {
+         ans = exactk;   
+        }
+        
+    for(int i=k;i<n;i++)
+    {
+        exactk = exactk + arr[i] - arr[i-k];
+       
+        if(exactk>ans)
+        {
+         ans = exactk;   
+        }
+        
+        int morek = exactk + maxsum[i-k];
+        if(morek>ans)
+        {
+            ans = morek;
+        }
+    }
+    cout<< ans;
+  
+}
