@@ -1,0 +1,69 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+  int arr[n];
+    for(int i=0;i<n;i++)
+{
+    cin>>arr[i];
+}
+
+long long int dp[n+1];
+for(int i=0;i<n+1;i++)
+{
+    dp[i] = INT_MAX;
+}
+//    for(int i=0 ;i<=n; i++)
+//    {
+//       cout<<dp[i]<<" ";
+//    }
+//    cout<<endl;  
+
+dp[n]=0;
+
+for(int i=n-1;i>=0; i--)
+{
+    if(arr[i]>0)
+  {
+  long long   int mini = 10e9;
+  //  cout<<"firsrmini"<<mini<<endl;
+    for(int j =1; j<=arr[i] and (i+j)<=n; j++)
+    { 
+        if(dp[i+j]!= INT_MAX)
+        {
+           mini = min(mini,dp[i+j]); 
+        }
+    }
+  // cout<<"mini= "<<mini<<endl;
+    if(mini != 10e9)
+    {
+        dp[i] = mini +1;
+        
+    }
+    else
+    {
+        dp[i] = INT_MAX;
+    }
+  //  cout<<"dp[i]= "<<dp[i]<<endl;
+  }
+ 
+ }
+ 
+ //cout<<"   -----------------------";
+    if(dp[0] == INT_MAX)
+    {
+        cout<<0;
+    }
+    else
+    {
+     cout<<dp[0];   
+    }
+  cout<<endl;  
+//    for(int  i =0 ;i<= n ; i++)
+//    {
+//       cout<<dp[i]<<" ";
+//    }
+//    
+}
