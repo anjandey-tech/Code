@@ -1,0 +1,91 @@
+//bfs approach
+#include<bits/stdc++.h>
+using namespace std;
+bool bfsbipartite(int i, vector<int> adj[], int color[])
+{ 
+   queue<int> q;
+   q.push(i);
+   color[i]=1;
+   while(!q.empty())
+   {
+      int nd = q.front();
+      q.pop();
+    
+    for(auto it : adj[nd])
+    {
+       if(color[it] == -1)
+       {
+          color[it] = 1 - color[nd];
+          q.push(it);
+       
+       }
+       
+       else if(color[it] == color[nd]) //not bipartite
+       {
+          return false;
+       }
+       
+       
+    }
+    
+   }
+   return true;
+    
+}
+bool isbipartite(vector<int> adj[],int node)
+{
+    int color[node];  // color arr store the color of node
+     memset(color,-1,sizeof color) ;    // assigning all node color by -1 type
+   for(int i=0;i<node;i++)
+   {
+      if(color[i] == -1) //not colored by 0 or 1
+      {
+         
+       if( !bfsbipartite(i,adj,color))
+       {
+          return false;
+       }
+         
+      }
+      
+   }
+   return true;
+   
+}
+
+int main()
+{
+   int node,edge;
+   cin>>node>>edge;
+   vector<int> adj[node]; // adj list of size node
+   for(int i=0;i<edge;i++)
+   {
+      int u,v;
+      cin>>u>>v;
+      adj[u].push_back(v);
+      adj[v].push_back(u);
+      
+   }
+    for(int i = 0;i<node;i++)
+   {
+      cout<<i<<"------> ";
+      
+      for(int j = 0;j<adj[i].size();j++)
+      {
+         cout<<adj[i][j]<<" ";
+      }
+      cout<<endl;
+   }
+   
+   if(isbipartite(adj,node)) //return true
+   {
+      cout<<"graph is bipartite"<<endl;
+   }
+   else if(isbipartite(adj,node) == false)
+   {
+       cout<<"graph is not bipartite"<<endl;
+      
+   }
+   return 0;
+   
+}
