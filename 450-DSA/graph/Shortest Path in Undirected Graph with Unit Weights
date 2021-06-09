@@ -1,0 +1,57 @@
+//bfs
+#include<bits/stdc++.h>
+using namespace std;
+ 
+ int main() 
+{
+   int node,edge;
+   cin>>node>>edge;
+  vector<int> adj[node];
+  
+  
+  for(int i=0;i<edge;i++)
+  {
+     int u,v;
+     cin>>u>>v;
+     adj[u].push_back(v);
+     adj[v].push_back(u);
+  }
+  
+  int src ;
+  cin>>src;
+  
+   queue<int> q;
+   vector<int> dist(node,1000);
+   dist[src]=0;
+   q.push(src);
+   while(!q.empty())
+   {
+      int node= q.front();
+      q.pop();
+      for(auto it: adj[node])
+      {
+         if(1 + dist[node]<dist[it])
+         {
+            dist[it] = 1+ dist[node];
+            q.push(it);
+         }
+         
+         
+      }
+      
+      
+   }
+   
+   for(auto it :  dist)
+   cout<<it<<" ";
+  
+}
+//input
+5 4 
+0 4
+4 1
+2 3
+0 2 
+4
+// output
+1 1 2 3 0 
