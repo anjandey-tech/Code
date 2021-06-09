@@ -1,4 +1,5 @@
- #include <bits/stdc++.h>
+//bfs implementation
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {    
@@ -63,3 +64,59 @@ for(int j=0; j<graph[i].size();j++)
        
  }
 	    
+/*//dfs implementation
+approach -> after complemention of dfs of any node, just put it into the stack. in this way we get toposort. 
+for exemple u----> v when you call dfs(u) it recursively call dfs(v) , so at first dfs of v will complete and node v will push to stack before u node, 
+in stack |  u |
+         | v  |     when you print stack it give you u , then v (which satisfy toposort defination)
+         |----|
+         
+  */       
+ #include<bits/stdc++.h>
+ using namespace std;
+  void dfstopo(int node,vector<int>adj[],stack<int> &st,vector<int> &vis)
+ {
+    
+    vis[node] = 1;
+    
+    for(auto it : adj[node])
+    {
+       if(vis[it] ==-1) // not visited
+       {
+          
+          dfstopo(it,adj,st,vis);
+          
+       }
+       
+    }
+    
+    st.push(node);
+ }
+ int main()
+ {
+    int node, edge;
+    cin>>node>>edge;
+    std::vector<int> adj[node];
+    for(int i=0;i<edge;i++)
+    {
+       int u,v;
+       cin>>u>>v;
+       adj[u].push_back(v);
+       
+    }
+    
+     std::stack<int> st ;
+    vector<int> vis(node,-1);
+    for(int i=0;i<node;i++)
+    {
+       if(vis[i] == -1) //not visited
+       dfstopo(i,adj,st,vis);
+    }
+  
+  while(!st.empty())
+  {
+     cout<<st.top()<<" ";
+     st.pop();
+  }
+ 
+ }
