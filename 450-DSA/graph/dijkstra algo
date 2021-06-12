@@ -18,6 +18,9 @@ int main(){
 	cin >> source;
 	
 	// Dijkstra's algorithm begins from here
+	//here we use priority_queue. so,after complete the visiting of adj node of source node , we move to the node which takes the
+	//smallest distance to reach from source node.
+	
 	priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > > pq;// min-heap ; In pair => (dist,from)
 	vector<int> distTo(n+1,INT_MAX); 	// 1-indexed array for calculating shortest paths; 
 	
