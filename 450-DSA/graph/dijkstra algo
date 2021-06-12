@@ -1,3 +1,5 @@
+ //it is used to find the shortest path in un-directed graph, edge has different weight.
+ //here we find the shortest path from one node(source node) to every other node.
  #include<bits/stdc++.h>
 using namespace std;
 
