@@ -1,4 +1,6 @@
 //bfs
+// graph is undirected and each edge has unit weight.
+// here we have to find the shortest distance from one node(source node) to all other node.
 #include<bits/stdc++.h>
 using namespace std;
  
