@@ -21,9 +21,10 @@ int main(){
 	//here we use priority_queue. so,after complete the visiting of adj node of source node , we move to the node which takes the
 	//smallest distance to reach from source node.
 	
-	priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > > pq;// min-heap ; In pair => (dist,from)
+	priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > > pq;// min-heap ; In pair => (dist,from) //from reprensent the cost from source to that node
+	                                                                                                                      //but this not minimum distance,
 	vector<int> distTo(n+1,INT_MAX); 	// 1-indexed array for calculating shortest paths; 
-	
+	//store shortest distance from source node to every other node
 	distTo[source] = 0;
 	pq.push(make_pair(0,source));	// (dist,from)
 	
@@ -32,7 +33,7 @@ int main(){
 		int prev = pq.top().second; //prev node//we checking minimum distance distance from prev node to the adjacent node of prev
 		pq.pop();
 		
-		vector<pair<int,int> >::iterator it;
+		//vector<pair<int,int> >::iterator it;
 		for(auto it : g[prev])
 		{
 			int next = it.first;//next node//ajd node of it
