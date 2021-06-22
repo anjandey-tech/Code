@@ -1,0 +1,60 @@
+https://leetcode.com/problems/merge-two-binary-trees/
+class Solution {
+public:
+    TreeNode* mergeTrees(TreeNode* root1, TreeNode* root2) 
+    {
+        if(root1 == NULL and root2 == NULL)
+            return NULL;
+        if(root1 == NULL and root2 != NULL)
+            return root2;
+         if(root1 != NULL and root2 == NULL)
+            return root1;
+        
+        queue<TreeNode*> q;
+        q.push(root1);
+        q.push(root2);
+        
+        while(!q.empty())
+        {
+            TreeNode* a = q.front();
+            q.pop();
+            
+             TreeNode* b = q.front();
+            q.pop();
+            
+            a->val +=b->val;
+            
+            if(a->left !=NULL and b->left != NULL)
+            {
+                q.push(a->left);
+                q.push(b->left);
+                
+            }
+            
+             if(a->right !=NULL and b->right != NULL)
+            {
+                q.push(a->right);
+                q.push(b->right);
+                
+            }
+               if(a->left ==NULL and b->left != NULL)
+            {       
+                a->left = b->left;
+                   q.push(a->left);
+                   q.push(new TreeNode(0));
+            }
+            
+               if(a->right ==NULL and b->right != NULL)
+            {
+                    a->right = b->right;
+                   q.push(a->right);
+                    q.push(new TreeNode(0));
+                
+            }
+              
+         
+        }
+           return root1;     
+              
+    }
+};
