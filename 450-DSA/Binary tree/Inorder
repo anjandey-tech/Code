@@ -26,6 +26,42 @@
 //         return v;
 //     }
 // };
+//iterative
+class Solution {
+public:
+     
+    vector<int> inorderTraversal(TreeNode* root) 
+    {
+        vector<int> v;
+     if(root == NULL)
+         return v;
+        bool c = true;
+        stack<TreeNode*> st;
+        
+        
+        while (c)
+        {
+            if(root != NULL)
+            {
+                st.push(root);
+                root = root->left;
+            }
+            else
+            {
+                if(st.empty())
+                    c= false;
+                if(!st.empty())
+                {
+                root = st.top();
+                st.pop();
+                v.push_back(root->val);
+                root=root->right;
+                }
+            }
+        }
+        return v;
+    }
+};
 class Solution {
 public:
      
