@@ -1,0 +1,44 @@
+//https://leetcode.com/problems/russian-doll-envelopes/submissions/
+//LIS VARIATION
+class Solution {
+public:
+    int maxEnvelopes(vector<vector<int>>& envelopes)
+    {
+         if (envelopes.empty()) return 0;
+        
+        sort(envelopes.begin(), envelopes.end());  //based on width
+        
+        for(int i=0;i<envelopes.size();i++)
+        {
+            for(int j=0; j<envelopes[i].size();j++)
+            {
+                cout<<envelopes[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        
+        vector<int> dp(envelopes.size(), 1);
+        
+        //LIS based on height
+        for (int i = 0; i < envelopes.size(); ++i)
+        {
+            int max = 0;
+            
+            for (int j = 0; j < i; ++j)
+            {
+                if (envelopes[j][0] < envelopes[i][0] && envelopes[j][1] < envelopes[i][1])                                                                                    
+                {
+                    if(dp[j]>max)
+                    {
+                         max = dp[j];
+                    }
+                }
+                    
+            }
+            dp[i]= max+1;
+                  
+        }
+        return *max_element(dp.begin(), dp.end());
+        
+    }
+};
