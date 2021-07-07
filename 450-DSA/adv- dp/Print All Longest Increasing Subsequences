@@ -5,8 +5,8 @@ class Pair
 {
     public:
     int l; // length -> number of element in increasing subsequeuece -> store in dp
-    int i;
-    int val;
+    int i; //index
+    int val; //val
     string psf;
     public:
     Pair(int l, int i ,int val, string psf)
@@ -32,8 +32,8 @@ int main()
         dp[i]=0;
     }
     
-    int omaxl = 0;
-    int omaxi = 0;
+    int omaxl = 0; //overall max length
+    int omaxi = 0;  // index of the last element of lis
     for(int i=0;i<n;i++)
     {
      int max=0;   
@@ -41,7 +41,7 @@ int main()
         {
             if(arr[j]<=arr[i])
             {
-                if(max<dp[j])
+                if(dp[j]>max)
                 {
                     max=dp[j];
                 }
@@ -51,38 +51,37 @@ int main()
         if(dp[i]>omaxl)
         {
             omaxl=dp[i];
-          //  omaxi=i;
+           omaxi=i;
         }
     }
-    cout<<omaxl<<endl;
-   // cout<< omaxi<<endl;
+    cout<<omaxl<<endl; //length of lis
+//cout<< omaxi<<endl;
     queue<Pair> q;
-    for(int i = 0; i < n; i++){
-            if(omaxl == dp[i]){
-                q.push(Pair(omaxl, i, arr[i], arr[i] + ""));
+    for(int i = 0; i < n; i++){ 
+            if(omaxl == dp[i])  //dp store the length of lis,  so when length of lis == dp[i]
+            {
+                q.push(Pair(omaxl, i, arr[i], to_string(arr[i]) + "")); // length, index, val, psf
             }
         }
-  //  q.push(Pair(omaxl,omaxi,arr[omaxi],arr[omaxi] + " "));
+    //q.push(Pair(omaxl,omaxi,arr[omaxi],to_string(arr[omaxi]) + ""));
     
         while(q.size() > 0){
             Pair rem = q.front();
             q.pop();
             
-            if(rem.l == 1){
-                cout<<(rem.psf)<<endl;
+            if(rem.l == 1) //when length == 1 i.e. it is the first element of lis , so our job is done
+            {
+                cout<<(rem.psf)<<endl; //print the path
             }
             
-            for(int j = rem.i - 1; j >= 0; j--)
+            for(int j = rem.i - 1; j >= 0; j--) //iterrate over the dp arr from index-1  of rem 
             {
-                if(dp[j] == rem.l - 1 && arr[j] <= rem.val)
+                if(dp[j] == rem.l - 1 && arr[j] <= rem.val) //length == length of rem -1 and value should be less than or quale
                 {
-                   q.push(Pair(dp[j], j, arr[j], arr[j] + " -> " + rem.psf));
+                   q.push(Pair(dp[j], j, arr[j], to_string(arr[j]) + " -> " + rem.psf)); // then push
+                            //length , index, val, psf
                 }
             }
         }
-    
-    
-    
-    
     
 }
