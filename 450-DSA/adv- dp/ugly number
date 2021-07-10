@@ -1,0 +1,37 @@
+//pepcoding
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    
+    int n;
+    cin>>n;
+    int dp[n+1];
+    dp[0]=0; //oth ugly number is 0
+    int p2=1, p3 =1, p5=1;
+    dp[1]=1;//1st ugly number is 1 
+    
+    for(int i=2;i<=n;i++)
+    {
+        int mini = min(2*dp[p2],min(3*dp[p3],5*dp[p5]));
+        dp[i]=mini;
+     
+    if(mini == 2*dp[p2])
+    {
+        p2++;
+    }
+    if(mini == 3*dp[p3])
+    {
+        p3++;
+    }
+    if(mini == 5*dp[p5])
+    {
+        p5++;
+    }
+    
+    }
+    
+    for(int i=0;i<=n;i++)
+    cout<<dp[i]<<" ";
+  cout<<dp[n];
+}
