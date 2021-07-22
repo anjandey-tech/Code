@@ -1,0 +1,84 @@
+//https://practice.geeksforgeeks.org/problems/mother-vertex/1#
+//pepcoding
+//https://www.youtube.com/watch?v=iYUil_m64Xg&t=923s
+
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+
+class Solution 
+{
+    public:
+    
+     void dfs(int i, vector<bool> &visited, vector<int> adj[])
+    {
+     
+        visited[i] = true;
+        
+        for(auto it:adj[i])
+        {
+            
+            if(visited[it] == false)
+            {
+                
+                dfs(it, visited, adj);
+            }
+        }
+      
+        
+        
+    }
+ 
+	int findMotherVertex(int V, vector<int>adj[])
+	{
+	 
+	 vector<bool> visited(V,false);
+	 int lastdfs = 0;
+	 for(int i=0;i<V;i++)
+	 {
+	     if(visited[i] == false)
+	     {
+	         dfs(i, visited, adj);
+	         lastdfs = i;
+	     }
+	 }
+	 
+	 for(int i=0;i<V;i++)
+	 {
+	     visited[i]=false;
+	 }
+	 
+	 dfs(lastdfs,visited, adj);
+	 
+	 for(int i=0;i<V;i++)
+	 {
+	     if(visited[i]==false)
+	     return -1;
+	 }
+	 return lastdfs;
+	    
+	}
+
+};
+
+// { Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int V, E;
+		cin >> V >> E;
+		vector<int>adj[V];
+		for(int i = 0; i < E; i++){
+			int u, v;
+			cin >> u >> v;
+			adj[u].push_back(v);
+		}
+		Solution obj;
+		int ans = obj.findMotherVertex(V, adj);
+		cout << ans <<"\n";
+	}
+	return 0;
+}  // } Driver Code Ends
