@@ -1,0 +1,119 @@
+//dsu implemwntation
+//https://leetcode.com/problems/number-of-provinces/discuss/873741/Simple-C%2B%2B-Solution-oror-Fully-Explained-at-begineers-level-oror-Easy-Understanding-of-UNION-concept
+class Solution {
+public:
+    
+   int findpar(int x, vector<int>& par) 
+   {
+      
+       
+       if(par[x] == x)
+           return x;
+       else 
+       {
+           return par[x] = findpar(par[x],par);
+           
+       }
+       
+   }
+    int findCircleNum(vector<vector<int>>& isConnected)
+    {
+        
+        
+        int n= isConnected.size() ;
+        if(n==0)
+            return 0;
+        vector<int> par(n,0);
+        for(int i=0;i<n;i++)
+        {
+            par[i]=i;
+        }
+        int group = n;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(isConnected[i][j]==1)
+                {
+                    int p_i = findpar(i,par);
+                    int p_j = findpar(j,par);
+                    
+                    if(p_i !=p_j)
+                    {
+                        
+                        par[p_i]=p_j;
+                        group--;
+                    }
+                }
+            }
+        }
+        return group;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//dfs implementation
+ class Solution {
+public:
+    void dfs(int u,vector<vector<int>> &adj,vector<bool> &vis)
+    {
+        vis[u]=true;
+        for(auto it:adj[u])
+            if(vis[it] == false)
+            {
+                dfs(it,adj,vis);
+            }
+    }
+    int findCircleNum(vector<vector<int>>& mat) 
+    {
+        int n=mat.size();
+        
+        if(n== 0)return n;
+        
+        int m=mat[0].size();
+        
+        vector<vector<int>> adj(n);
+        vector<bool> vis(n,false);
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++){
+                if(mat[i][j])
+                {
+                    adj[i].push_back(j);
+                    adj[j].push_back(i);
+                }
+            }
+        }
+        
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(vis[i] == false)
+            {
+                dfs(i,adj,vis);
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
+
+
+//
