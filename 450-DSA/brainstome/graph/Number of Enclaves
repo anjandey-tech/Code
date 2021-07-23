@@ -1,0 +1,102 @@
+Reverse Engineering in Graph
+Number of Enclaves
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    
+    int n,m;
+    cin>>n>>m;
+    int arr[n][m];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            cin>>arr[i][j];
+        }
+    }
+   //  cout<<" matrix==================="<<endl;
+    
+   //  for(int i=0;i<n;i++)
+   //  {
+   //     for(int j=0;j<m;j++)
+   //     {
+   //          cout<<arr[i][j]<<" ";
+   //     }
+   //     cout<<endl;
+   //  }
+    
+    
+    
+    queue<pair<int,int>> q;
+    
+    
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(i == 0 or i == n-1 or j == 0  or j == m-1)
+            {
+                if(arr[i][j]==1)
+                {
+                 q.push(make_pair(i,j));
+                 
+                }
+                
+            }
+        }
+    }
+    
+    int ini = q.size();
+    
+    
+    
+    
+    int dx[4]={0,0,1,-1};
+    int dy[4]={1,-1,0,0};
+    
+    int ni=0, nj=0;
+    while(!q.empty())
+    {
+        
+        auto p = q.front();
+        
+        int qi = p.first;
+       
+        int qj = p.second;
+        // cout<<qi<<" "<<qj<<endl;
+        q.pop();
+        arr[qi][qj]=0;
+        for(int i=0;i<4;i++)
+        {
+             ni = qi+dx[i];
+           
+             nj = qj + dy[i];
+            
+            // cout<<"ni="<<ni<<endl;
+            // cout<<"nj="<<nj<<endl;
+            
+           
+                if(ni>=0 and ni<=n-1 and nj>=0  and nj<=m-1 and arr[ni][nj] == 1)
+            {
+                q.push(make_pair(ni,nj));
+                arr[ni][nj]=0;
+            }
+        }
+       
+    }
+   // cout<<" matrix==================="<<endl;
+    int count=0;
+     for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(arr[i][j]==1)
+            count++;
+        }
+      
+    }
+    cout<<count<<endl;
+    
+     
+}
