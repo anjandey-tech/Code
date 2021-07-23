@@ -1,0 +1,100 @@
+//unique pattern finding in matrix
+//pepcoding
+//https://www.youtube.com/watch?v=4vY_ZPi9jTs&list=PL-Jc9J83PIiEuHrjpZ9m94Nag4fwAvtPQ&index=11
+/*3 3
+1 0 0
+0 1 0
+1 1 1*/
+#include<bits/stdc++.h>
+using namespace std;
+
+void dfs(int i,int j, string &psf,int n,int m,  vector<vector<int>> &arr)
+{
+   arr[i][j]=0;
+   if(i-1>=0 and arr[i-1][j]==1)  //up
+   {
+       psf+='u';
+       dfs(i-1,j,psf,n,m,arr);
+   }
+
+   if(j+1<m and arr[i][j+1]==1)//r
+   {
+       psf+='r';
+       dfs(i,j+1,psf,n,m,arr);
+
+
+   }
+
+   if(i+1<n and arr[i+1][j]==1)//d
+   {
+       psf+='d';
+       dfs(i+1,j,psf,n,m,arr);
+       
+   }
+
+   if(j-1>=0 and arr[i][j-1]==1)//l
+   {
+       psf+='l';
+       dfs(i,j-1,psf,n,m,arr);
+       
+
+   }
+
+   psf+='z';
+         
+
+
+} 
+int main()
+{
+    
+     int n,m;
+    cin>>n>>m;
+  //  int arr[n][m];
+  vector<vector<int>> arr;
+    for(int i=0;i<n;i++)
+    {
+       vector<int> temp;
+        for(int j=0;j<m;j++)
+        {
+         int ele;
+         cin>>ele;
+         temp.push_back(ele);
+        }
+        arr.push_back(temp);
+        temp.clear();
+    }
+    // cout<<" matrix==================="<<endl;
+    
+    //  for(int i=0;i<n;i++)
+    // {
+    //     for(int j=0;j<m;j++)
+    //     {
+    //         cout<<arr[i][j]<<" ";
+    //     }
+    //     cout<<endl;
+    // }
+   
+    string psf = "";
+    set<string> st;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            if(arr[i][j]==1)
+            {
+                psf="";
+                dfs(i,j,psf,n,m,arr);
+               // cout<<psf<<endl;
+                st.insert(psf);
+
+            }
+        }
+        
+    }
+    
+    cout<<st.size();
+    
+
+
+}
