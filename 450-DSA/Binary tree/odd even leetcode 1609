@@ -1,0 +1,116 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+/*class Solution {
+public:
+    bool isEvenOddTree(TreeNode* root) 
+    {
+        queue<TreeNode*> q;
+        q.push(root);
+        int level = 0;
+        while(!q.empty())
+        {
+            int size = q.size();
+            vector<int> notres;
+            while(size--)
+            {
+                TreeNode* temp = q.front();
+                 notres.push_back(temp->val);
+                if(temp->left)
+            {
+                q.push(temp->left);
+                
+            }
+            if(temp->right)
+            {
+                q.push(temp->right);
+            }
+            q.pop();
+            }
+            
+            if(level % 2 ==0) // even
+            {
+                
+                for(int i=0;i<notres.size();i++)
+                {
+                    if(notres[i]%2 == 0)
+                        return false;
+                }
+                for(int i=0;i<notres.size()-1;i++) // increasing 
+                {
+                    if(notres[i]>=notres[i+1])
+                        return false;
+                }
+            }
+            else if(level %2 == 1) //odd
+            {
+                for(int i=0;i<notres.size();i++)
+                {
+                    if(notres[i]%2 != 0)
+                        return false;
+                }
+                 for(int i=0;i<notres.size()-1;i++) // decreasing 
+                {
+                    if(notres[i]<=notres[i+1])
+                        return false;
+                }
+            }
+            level++;
+            
+        }
+        return true;
+        
+    }
+};
+*/
+class Solution {
+ 
+    unordered_map<int , int > m; //level , value
+    
+    bool dfs(TreeNode* root , int level )
+    {
+        
+        if (root == NULL )  return true;
+        
+        if (level & 1)//odd
+        {
+            if ( root->val  &  1  )  return false; // if level is odd then value should not be odd
+        }
+        else if ( !(root->val & 1) ) //even
+            return false; // if level is even then value should not be even
+        
+       //data present in map 
+        if (m.find(level) != m.end() )
+        {
+            if (level & 1 )//odd   strictly decreasing 
+            {
+                if (m[level] <= root->val ) return false; // should be strictely strictly decreasing   
+            }
+            else if (m[level] >= root->val ) //even strictly increasing
+                return false; // should be strictely strictly increasing  
+            
+        }
+        
+        //if data is not present in map then put it into map
+        m[level] =  root->val;
+    
+        return dfs(root->left , level + 1) && dfs(root->right, level +  1);
+    }
+    
+    
+public:
+    bool isEvenOddTree(TreeNode* root) {
+        
+        return dfs(root, 0 );
+        
+        
+    }
+};
