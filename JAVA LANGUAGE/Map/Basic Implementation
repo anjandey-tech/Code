@@ -1,0 +1,52 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NavigableMap;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class map {
+    public static void main(String [] args)
+    {
+        Map<String, Integer> m = new HashMap<String,Integer>();
+        m.put("anjan", 1);
+        m.put("anjali", 2);
+        m.put("manish",3);
+
+        //get value of the key
+        System.out.println(m.getOrDefault("ajan", 0));
+        System.out.println(m.containsKey("anjali"));
+        m.remove("manish");
+        System.out.println(m.containsKey("manish"));
+
+        //traverse map
+        Set<Map.Entry<String, Integer>> entryset = m.entrySet(); 
+        for(Map.Entry<String,Integer> e: entryset)
+        {
+            System.out.println(e.getKey()+" , " + e.getValue());
+        }
+
+
+        Set<String> s=m.keySet();
+        for(String key:s)
+        {
+            System.out.println(key+ " "+ m.get(key));
+        }
+
+        NavigableMap<Integer,String> tmap = new TreeMap<Integer,String>((a,b)->b-a);
+        tmap.put(1,"anjan");
+        tmap.put(2,"anjali");
+        tmap.put(3,"manish");
+        tmap.put(4,"Karishma");
+        
+        Set<Map.Entry<Integer,String>> entset = tmap.entrySet(); 
+        for(Map.Entry<Integer,String> e: entset)
+        {
+            System.out.println(e.getKey()+" , " + e.getValue());
+        }
+
+
+         
+
+    }
+    
+}
