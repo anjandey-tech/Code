@@ -1,0 +1,18 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+
+        //for(int i=0;i<nums.length;i++)
+       for(int i: nums)
+        {
+          //  System.out.println(i);
+            if(hm.containsKey(i))
+            return true;
+            hm.put(i,hm.getOrDefault(i,0)+1);
+        }
+        return false;
+        
+    }
+}
+
+https://leetcode.com/problems/contains-duplicate/description/
